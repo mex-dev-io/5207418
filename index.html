@@ -1,9 +1,351 @@
-<!DOCTYPE html>
-<html lang="es">
+<script>
+        // Language translations
+        const translations = {
+            en: {
+                langName: "English",
+                title: "520 741 8 - A Ritual Encoded On-Chain",
+                heroSubtitle: "A ritual encoded on-chain",
+                heroDescription: "Repeat the sequence. Hold the symbol. Observe what manifests.",
+                ctaButton: "Enter the Ritual",
+                sectionWhat: "What is 520 741 8?",
+                narrativeP1: "A numerical pattern. A manifestation practice. A symbol anchored to the blockchain.",
+                narrativeP2: "<strong>520 741 8</strong> has been used as a cipher for intention setting—a sequence repeated to align thought with outcome. Not magic. Not science. Something observed.",
+                narrativeP3: "This token exists as a permanent marker of participation in this practice. Each holder becomes part of a distributed ritual, a network of observers repeating the same sequence, watching what unfolds.",
+                narrativeP4: "The pattern is now immutable. The ritual, ongoing.",
+                patternIntention: "Intention",
+                patternIntentionDesc: "The seed of desire. What you wish to manifest begins here.",
+                patternRepetition: "Repetition",
+                patternRepetitionDesc: "The act of encoding. Speak it, write it, hold it in mind.",
+                patternInfinity: "Infinity",
+                patternInfinityDesc: "The eternal loop. What returns, what cycles, what completes.",
+                patternManifestation: "Manifestation",
+                patternManifestationDesc: "The outcome observed. Not promised. Not guaranteed. Simply witnessed.",
+                mysticalQuote: '"The pattern does not create reality. It aligns you to observe what was always coming."',
+                sectionRitual: "How to Participate",
+                step1Title: "Acquire the Symbol",
+                step1Desc: "Hold the token. It serves as your key to the collective ritual.",
+                step2Title: "Repeat the Sequence",
+                step2Desc: "Say aloud or write: <strong>520 741 8</strong><br>Morning and night. Seven times. Or as you feel called.",
+                step3Title: "Observe",
+                step3Desc: "Pay attention to synchronicities, patterns, outcomes. Document privately or share anonymously with the network.",
+                step4Title: "Reflect",
+                step4Desc: "The ritual has no end date. The blockchain remembers every participant.",
+                nextRitualTitle: "Next Ritual Cycle",
+                nextRitualDate: "Full Moon • January 29, 2026",
+                nextRitualDesc: "Coordinated global observation. No promises. Only presence.",
+                sectionProof: "Proof on Chain",
+                holdersLabel: "Holders",
+                holdersDesc: "Participants in the ritual",
+                supplyLabel: "Supply Locked",
+                supplyDesc: "Immutable. Permanent.",
+                statusLabel: "Network Status",
+                statusDesc: "The network observes in real time",
+                durationLabel: "Duration",
+                durationDesc: "No rug. Only ritual.",
+                liveChartLink: "View Live Chart on Pump.fun →",
+                sectionActivity: "The Ritual Breathes",
+                log1: "Landing deployed",
+                log2: "Token deployed on Solana",
+                log3: "First 50 holders invited personally",
+                log4: "Community channel opened",
+                log5: "520 741 8 encoded into blockchain",
+                activityNote1: "Built by observers, for observers.",
+                activityNote2: "No team tokens. No presale. No hype.",
+                activityNote3: "Only those who resonate, participate.",
+                sectionCommunity: "Join the Network",
+                communityP1: "This is not a movement. It is an observation.",
+                communityP2: "The first holders were invited directly—those who already understood the sequence. Now, the ritual is open to any who find it.",
+                communityP3: "Participation is voluntary. Belief is not required. Only curiosity.",
+                xCommunity: "𝕏 Community",
+                xCommunityDesc: "Share observations.<br>Discuss patterns.<br>Stay present.",
+                pumpPortal: "Pump.fun Portal",
+                pumpPortalDesc: "Trade, observe,<br>participate in the<br>economic ritual.",
+                communityEthos1: "No shilling. No spam. No false promises.",
+                communityEthos2: "Document what you notice.",
+                communityEthos3: "The ritual works for those who observe, not for those who demand.",
+                footerTagline: "A sequence. A symbol. A choice.",
+                footerAction: "Repeat. Hold. Observe.",
+                disclaimer: "This is not financial advice. This is a symbolic experiment. Participate at your own discernment. The blockchain is permanent. Your intentions are yours alone."
+            },
+            es: {
+                langName: "Español",
+                title: "520 741 8 - Un Ritual Codificado en Blockchain",
+                heroSubtitle: "Un ritual codificado en blockchain",
+                heroDescription: "Repite la secuencia. Sostén el símbolo. Observa lo que se manifiesta.",
+                ctaButton: "Entrar al Ritual",
+                sectionWhat: "¿Qué es 520 741 8?",
+                narrativeP1: "Un patrón numérico. Una práctica de manifestación. Un símbolo anclado a la blockchain.",
+                narrativeP2: "<strong>520 741 8</strong> se ha utilizado como cifra para establecer intenciones—una secuencia repetida para alinear pensamiento con resultado. No es magia. No es ciencia. Es algo observado.",
+                narrativeP3: "Este token existe como marcador permanente de participación en esta práctica. Cada holder se convierte en parte de un ritual distribuido, una red de observadores repitiendo la misma secuencia, observando lo que se despliega.",
+                narrativeP4: "El patrón ahora es inmutable. El ritual, continuo.",
+                patternIntention: "Intención",
+                patternIntentionDesc: "La semilla del deseo. Lo que deseas manifestar comienza aquí.",
+                patternRepetition: "Repetición",
+                patternRepetitionDesc: "El acto de codificar. Dilo, escríbelo, mantenlo en mente.",
+                patternInfinity: "Infinito",
+                patternInfinityDesc: "El bucle eterno. Lo que retorna, lo que cicla, lo que completa.",
+                patternManifestation: "Manifestación",
+                patternManifestationDesc: "El resultado observado. No prometido. No garantizado. Simplemente atestiguado.",
+                mysticalQuote: '"El patrón no crea la realidad. Te alinea para observar lo que siempre estaba por venir."',
+                sectionRitual: "Cómo Participar",
+                step1Title: "Adquiere el Símbolo",
+                step1Desc: "Sostén el token. Sirve como tu llave al ritual colectivo.",
+                step2Title: "Repite la Secuencia",
+                step2Desc: "Di en voz alta o escribe: <strong>520 741 8</strong><br>Mañana y noche. Siete veces. O como te sientas llamado.",
+                step3Title: "Observa",
+                step3Desc: "Presta atención a sincronicidades, patrones, resultados. Documenta privadamente o comparte anónimamente con la red.",
+                step4Title: "Reflexiona",
+                step4Desc: "El ritual no tiene fecha final. La blockchain recuerda cada participante.",
+                nextRitualTitle: "Próximo Ciclo Ritual",
+                nextRitualDate: "Luna Llena • 29 de Enero, 2026",
+                nextRitualDesc: "Observación global coordinada. Sin promesas. Solo presencia.",
+                sectionProof: "Prueba en Cadena",
+                holdersLabel: "Holders",
+                holdersDesc: "Participantes en el ritual",
+                supplyLabel: "Supply Bloqueado",
+                supplyDesc: "Inmutable. Permanente.",
+                statusLabel: "Estado de Red",
+                statusDesc: "La red observa en tiempo real",
+                durationLabel: "Duración",
+                durationDesc: "Sin rug. Solo ritual.",
+                liveChartLink: "Ver Gráfico en Vivo en Pump.fun →",
+                sectionActivity: "El Ritual Respira",
+                log1: "Landing desplegada",
+                log2: "Token desplegado en Solana",
+                log3: "Primeros 50 holders invitados personalmente",
+                log4: "Canal comunitario abierto",
+                log5: "520 741 8 codificado en blockchain",
+                activityNote1: "Construido por observadores, para observadores.",
+                activityNote2: "Sin tokens de equipo. Sin preventa. Sin hype.",
+                activityNote3: "Solo quienes resuenan, participan.",
+                sectionCommunity: "Únete a la Red",
+                communityP1: "Esto no es un movimiento. Es una observación.",
+                communityP2: "Los primeros holders fueron invitados directamente—aquellos que ya entendían la secuencia. Ahora, el ritual está abierto para cualquiera que lo encuentre.",
+                communityP3: "La participación es voluntaria. No se requiere creencia. Solo curiosidad.",
+                xCommunity: "Comunidad 𝕏",
+                xCommunityDesc: "Comparte observaciones.<br>Discute patrones.<br>Permanece presente.",
+                pumpPortal: "Portal Pump.fun",
+                pumpPortalDesc: "Tradea, observa,<br>participa en el<br>ritual económico.",
+                communityEthos1: "Sin promoción agresiva. Sin spam. Sin falsas promesas.",
+                communityEthos2: "Documenta lo que notas.",
+                communityEthos3: "El ritual funciona para quienes observan, no para quienes exigen.",
+                footerTagline: "Una secuencia. Un símbolo. Una elección.",
+                footerAction: "Repite. Sostén. Observa.",
+                disclaimer: "Esto no es consejo financiero. Este es un experimento simbólico. Participa bajo tu propio discernimiento. La blockchain es permanente. Tus intenciones son solo tuyas."
+            },
+            zh: {
+                langName: "中文",
+                title: "520 741 8 - 链上编码的仪式",
+                heroSubtitle: "链上编码的仪式",
+                heroDescription: "重复序列。持有符号。观察显化。",
+                ctaButton: "进入仪式",
+                sectionWhat: "什么是 520 741 8？",
+                narrativeP1: "一个数字模式。一个显化实践。一个锚定在区块链上的符号。",
+                narrativeP2: "<strong>520 741 8</strong> 被用作意图设定的密码——一个重复的序列，用于将思想与结果对齐。不是魔法。不是科学。是被观察到的东西。",
+                narrativeP3: "这个代币作为参与此实践的永久标记而存在。每个持有者都成为分布式仪式的一部分，一个观察者网络重复相同的序列，观察展开的一切。",
+                narrativeP4: "模式现在是不可变的。仪式，持续进行。",
+                patternIntention: "意图",
+                patternIntentionDesc: "欲望的种子。你希望显化的东西从这里开始。",
+                patternRepetition: "重复",
+                patternRepetitionDesc: "编码的行为。说出来，写下来，记在心里。",
+                patternInfinity: "无限",
+                patternInfinityDesc: "永恒的循环。返回的、循环的、完成的。",
+                patternManifestation: "显化",
+                patternManifestationDesc: "观察到的结果。未承诺。未保证。只是见证。",
+                mysticalQuote: '"这个模式不创造现实。它让你与即将到来的东西对齐。"',
+                sectionRitual: "如何参与",
+                step1Title: "获取符号",
+                step1Desc: "持有代币。它是你进入集体仪式的钥匙。",
+                step2Title: "重复序列",
+                step2Desc: "大声说出或写下：<strong>520 741 8</strong><br>早晚各一次。七遍。或按你的感觉。",
+                step3Title: "观察",
+                step3Desc: "注意同步性、模式、结果。私下记录或与网络匿名分享。",
+                step4Title: "反思",
+                step4Desc: "仪式没有结束日期。区块链记住每个参与者。",
+                nextRitualTitle: "下一个仪式周期",
+                nextRitualDate: "满月 • 2026年1月29日",
+                nextRitualDesc: "协调的全球观察。没有承诺。只有临在。",
+                sectionProof: "链上证明",
+                holdersLabel: "持有者",
+                holdersDesc: "仪式参与者",
+                supplyLabel: "供应锁定",
+                supplyDesc: "不可变。永久。",
+                statusLabel: "网络状态",
+                statusDesc: "网络实时观察",
+                durationLabel: "持续时间",
+                durationDesc: "没有跑路。只有仪式。",
+                liveChartLink: "在 Pump.fun 查看实时图表 →",
+                sectionActivity: "仪式呼吸",
+                log1: "落地页部署",
+                log2: "代币在 Solana 上部署",
+                log3: "前50名持有者个人邀请",
+                log4: "社区频道开放",
+                log5: "520 741 8 编码到区块链",
+                activityNote1: "由观察者构建，为观察者服务。",
+                activityNote2: "没有团队代币。没有预售。没有炒作。",
+                activityNote3: "只有共鸣的人才参与。",
+                sectionCommunity: "加入网络",
+                communityP1: "这不是一场运动。这是一次观察。",
+                communityP2: "最初的持有者是直接被邀请的——那些已经理解序列的人。现在，仪式对任何找到它的人开放。",
+                communityP3: "参与是自愿的。不需要信仰。只需要好奇心。",
+                xCommunity: "𝕏 社区",
+                xCommunityDesc: "分享观察。<br>讨论模式。<br>保持临在。",
+                pumpPortal: "Pump.fun 门户",
+                pumpPortalDesc: "交易，观察，<br>参与<br>经济仪式。",
+                communityEthos1: "不推销。不垃圾信息。不虚假承诺。",
+                communityEthos2: "记录你注意到的。",
+                communityEthos3: "仪式为观察者服务，而非要求者。",
+                footerTagline: "一个序列。一个符号。一个选择。",
+                footerAction: "重复。持有。观察。",
+                disclaimer: "这不是财务建议。这是一个象征性实验。自行决定参与。区块链是永久的。你的意图只属于你。"
+            },
+            ja: {
+                langName: "日本語",
+                title: "520 741 8 - チェーン上にエンコードされた儀式",
+                heroSubtitle: "チェーン上にエンコードされた儀式",
+                heroDescription: "シーケンスを繰り返す。シンボルを保持する。現れるものを観察する。",
+                ctaButton: "儀式に入る",
+                sectionWhat: "520 741 8とは？",
+                narrativeP1: "数値パターン。顕現の実践。ブロックチェーンに固定されたシンボル。",
+                narrativeP2: "<strong>520 741 8</strong>は意図設定の暗号として使用されてきました—思考と結果を一致させるために繰り返されるシーケンス。魔法ではありません。科学でもありません。観察されたものです。",
+                narrativeP3: "このトークンは、この実践への参加の永続的なマーカーとして存在します。各保有者は分散型儀式の一部となり、同じシーケンスを繰り返す観察者のネットワークとなり、展開するものを見守ります。",
+                narrativeP4: "パターンは今や不変です。儀式は継続中です。",
+                patternIntention: "意図",
+                patternIntentionDesc: "欲望の種。あなたが現したいものはここから始まります。",
+                patternRepetition: "反復",
+                patternRepetitionDesc: "エンコードする行為。声に出して、書いて、心に留めて。",
+                patternInfinity: "無限",
+                patternInfinityDesc: "永遠のループ。戻ってくるもの、循環するもの、完成するもの。",
+                patternManifestation: "顕現",
+                patternManifestationDesc: "観察された結果。約束されていません。保証されていません。単に目撃されただけです。",
+                mysticalQuote: '"パターンは現実を創造しません。常に来ていたものを観察するようにあなたを整列させます。"',
+                sectionRitual: "参加方法",
+                step1Title: "シンボルを取得",
+                step1Desc: "トークンを保持します。これが集団儀式への鍵となります。",
+                step2Title: "シーケンスを繰り返す",
+                step2Desc: "声に出すか書く：<strong>520 741 8</strong><br>朝と夜。7回。または感じたままに。",
+                step3Title: "観察する",
+                step3Desc: "シンクロニシティ、パターン、結果に注意を払います。個人的に記録するか、ネットワークと匿名で共有します。",
+                step4Title: "反省する",
+                step4Desc: "儀式に終了日はありません。ブロックチェーンはすべての参加者を記憶します。",
+                nextRitualTitle: "次の儀式サイクル",
+                nextRitualDate: "満月 • 2026年1月29日",
+                nextRitualDesc: "協調されたグローバル観察。約束はありません。存在のみ。",
+                sectionProof: "チェーン上の証明",
+                holdersLabel: "保有者",
+                holdersDesc: "儀式の参加者",
+                supplyLabel: "供給ロック済",
+                supplyDesc: "不変。永続。",
+                statusLabel: "ネットワーク状態",
+                statusDesc: "ネットワークはリアルタイムで観察",
+                durationLabel: "期間",
+                durationDesc: "ラグプルなし。儀式のみ。",
+                liveChartLink: "Pump.funでライブチャートを見る →",
+                sectionActivity: "儀式は呼吸する",
+                log1: "ランディング展開",
+                log2: "Solanaにトークン展開",
+                log3: "最初の50人の保有者を個人的に招待",
+                log4: "コミュニティチャンネル開設",
+                log5: "520 741 8をブロックチェーンにエンコード",
+                activityNote1: "観察者によって、観察者のために構築されました。",
+                activityNote2: "チームトークンなし。プレセールなし。誇大広告なし。",
+                activityNote3: "共鳴する者のみが参加します。",
+                sectionCommunity: "ネットワークに参加",
+                communityP1: "これは運動ではありません。観察です。",
+                communityP2: "最初の保有者は直接招待されました—すでにシーケンスを理解している人々。今、儀式はそれを見つけた誰にでも開かれています。",
+                communityP3: "参加は任意です。信念は必要ありません。好奇心のみ。",
+                xCommunity: "𝕏 コミュニティ",
+                xCommunityDesc: "観察を共有。<br>パターンを議論。<br>存在し続ける。",
+                pumpPortal: "Pump.fun ポータル",
+                pumpPortalDesc: "取引、観察、<br>経済儀式に<br>参加。",
+                communityEthos1: "宣伝なし。スパムなし。虚偽の約束なし。",
+                communityEthos2: "気づいたことを記録する。",
+                communityEthos3: "儀式は観察する者のために機能し、要求する者のためではありません。",
+                footerTagline: "シーケンス。シンボル。選択。",
+                footerAction: "繰り返す。保持する。観察する。",
+                disclaimer: "これは財務アドバイスではありません。これは象徴的な実験です。自己の裁量で参加してください。ブロックチェーンは永続的です。あなたの意図はあなただけのものです。"
+            },
+            ko: {
+                langName: "한국어",
+                title: "520 741 8 - 체인에 인코딩된 의식",
+                heroSubtitle: "체인에 인코딩된 의식",
+                heroDescription: "시퀀스를 반복하세요. 심볼을 보유하세요. 나타나는 것을 관찰하세요.",
+                ctaButton: "의식에 참여",
+                sectionWhat: "520 741 8이란?",
+                narrativeP1: "숫자 패턴. 현현 실천. 블록체인에 고정된 심볼.",
+                narrativeP2: "<strong>520 741 8</strong>은 의도 설정을 위한 암호로 사용되어 왔습니다—생각과 결과를 일치시키기 위해 반복되는 시퀀스. 마법이 아닙니다. 과학도 아닙니다. 관찰된 것입니다.",
+                narrativeP3: "이 토큰은 이 실천에 참여한다는 영구적인 표시로 존재합니다. 각 보유자는 분산된 의식의 일부가 되며, 같은 시퀀스를 반복하는 관찰자 네트워크가 되어 전개되는 것을 지켜봅니다.",
+                narrativeP4: "패턴은 이제 불변입니다. 의식은 계속됩니다.",
+                patternIntention: "의도",
+                patternIntentionDesc: "욕망의 씨앗. 당신이 현현하고 싶은 것은 여기서 시작됩니다.",
+                patternRepetition: "반복",
+                patternRepetitionDesc: "인코딩하는 행위. 말하고, 쓰고, 마음에 담으세요.",
+                patternInfinity: "무한",
+                patternInfinityDesc: "영원한 루프. 돌아오는 것, 순환하는 것, 완성되는 것.",
+                patternManifestation: "현현",
+                patternManifestationDesc: "관찰된 결과. 약속되지 않았습니다. 보장되지 않았습니다. 단지 목격되었을 뿐입니다.",
+                mysticalQuote: '"패턴은 현실을 창조하지 않습니다. 항상 다가오고 있던 것을 관찰하도록 당신을 정렬시킵니다."',
+                sectionRitual: "참여 방법",
+                step1Title: "심볼 획득",
+                step1Desc: "토큰을 보유하세요. 이것이 집단 의식의 열쇠입니다.",
+                step2Title: "시퀀스 반복",
+                step2Desc: "소리 내어 말하거나 쓰세요: <strong>520 741 8</strong><br>아침과 저녁. 일곱 번. 또는 느끼는 대로.",
+                step3Title: "관찰",
+                step3Desc: "동시성, 패턴, 결과에 주의를 기울이세요. 개인적으로 기록하거나 네트워크와 익명으로 공유하세요.",
+                step4Title: "성찰",
+                step4Desc: "의식에는 종료일이 없습니다. 블록체인은 모든 참가자를 기억합니다.",
+                nextRitualTitle: "다음 의식 주기",
+                nextRitualDate: "보름달 • 2026년 1월 29일",
+                nextRitualDesc: "조정된 글로벌 관찰. 약속 없음. 오직 현존.",
+                sectionProof: "체인 증명",
+                holdersLabel: "보유자",
+                holdersDesc: "의식 참가자",
+                supplyLabel: "공급 잠금",
+                supplyDesc: "불변. 영구.",
+                statusLabel: "네트워크 상태",
+                statusDesc: "네트워크는 실시간으로 관찰",
+                durationLabel: "기간",
+                durationDesc: "러그풀 없음. 오직 의식.",
+                liveChartLink: "Pump.fun에서 실시간 차트 보기 →",
+                sectionActivity: "의식은 숨쉰다",
+                log1: "랜딩 배포",
+                log2: "Solana에 토큰 배포",
+                log3: "처음 50명의 보유자 개인 초대",
+                log4: "커뮤니티 채널 개설",
+                log5: "520 741 8을 블록체인에 인코딩",
+                activityNote1: "관찰자에 의해, 관찰자를 위해 구축되었습니다.",
+                activityNote2: "팀 토큰 없음. 사전 판매 없음. 과대 광고 없음.",
+                activityNote3: "공명하는 사람들만 참여합니다.",
+                sectionCommunity: "네트워크 참여",
+                communityP1: "이것은 운동이 아닙니다. 관찰입니다.",
+                communityP2: "최초 보유자들은 직접 초대되었습니다—이미 시퀀스를 이해한 사람들. 이제 의식은 그것을 찾는 누구에게나 열려 있습니다.",
+                communityP3: "참여는 자발적입니다. 믿음은 필요 없습니다. 오직 호기심.",
+                xCommunity: "𝕏 커뮤니티",
+                xCommunityDesc: "관찰 공유.<br>패턴 토론.<br>현존 유지.",
+                pumpPortal: "Pump.fun 포털",
+                pumpPortalDesc: "거래, 관찰,<br>경제 의식에<br>참여.",
+                communityEthos1: "선전 없음. 스팸 없음. 거짓 약속 없음.",
+                communityEthos2: "알아차린 것을 기록하세요.",
+                communityEthos3: "의식은 관찰하는 자를 위해 작동하며, 요구하는 자를 위한 것이 아닙니다.",
+                footerTagline: "시퀀스. 심볼. 선택.",
+                footerAction: "반복. 보유. 관찰.",
+                disclaimer: "이것은 재정 조언이 아닙니다. 이것은 상징적 실험입니다. 자신의 판단으로 참여하십시오. 블록체인은 영구적입니다. 당신의 의도는 오직 당신의 것입니다."
+            },
+            ru: {
+                langName: "Русский",
+                title: "520 741 8 - Ритуал, Закодированный в Блокчейне",
+                heroSubtitle: "Ритуал, закодированный в блокчейне",
+                heroDescription: "Повторяйте последовательность. Держите символ. Наблюдайте проявление.",
+                ctaButton: "Войти в Ритуал",
+                sectionWhat: "Что такое 520 741 8?",
+                narrativeP1: "Числовой паттерн. Практика проявления. Символ, закрепленный в блокчейне.",
+                narrativeP2: "<strong>520 741 8</strong> использовался как шифр для установки намерений—последовательность, повторяемая для согласования мысли с результатом. Не магия. Не наука. Нечто наблюдаемое.",
+                narrativeP3: "Этот<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ 5207418 - Código Grabovoi de Abundancia</title>
+    <title>520 741 8 - A Ritual Encoded On-Chain</title>
     <style>
         * {
             margin: 0;
@@ -11,643 +353,1057 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            color: #fff;
-            overflow-x: hidden;
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --gold-primary: #d4af37;
+            --gold-light: #f4d03f;
+            --gold-dark: #b8941e;
+            --diamond-shine: rgba(255, 255, 255, 0.9);
+            --accent: rgba(212, 175, 55, 0.8);
+            --accent-glow: rgba(212, 175, 55, 0.4);
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0a0;
+            --number-highlight: #f4d03f;
         }
 
-        .golden-particles {
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+
+        .header {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .particle {
-            position: absolute;
-            background: radial-gradient(circle, #ffd700, transparent);
-            border-radius: 50%;
-            animation: float 6s infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
-            50% { transform: translateY(-100px) rotate(180deg); opacity: 1; }
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(15px);
-            padding: 20px 50px;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 0.8rem 2rem;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
             z-index: 1000;
-            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .logo {
-            font-size: 32px;
-            font-weight: bold;
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-            letter-spacing: 3px;
-        }
-
-        .nav-links {
+        .header-left {
             display: flex;
-            gap: 30px;
+            align-items: center;
+            gap: 1rem;
         }
 
-        .nav-links a {
-            color: #ffd700;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
-            letter-spacing: 1px;
+        .header-logo {
+            width: 50px;
+            height: 50px;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
         }
 
-        .nav-links a:hover {
-            color: #fff;
-            text-shadow: 0 0 15px #ffd700;
+        .header-number {
+            font-family: 'Courier New', monospace;
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            font-weight: 700;
+            letter-spacing: 0.2rem;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
         }
 
-        .connect-btn {
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
+        .lang-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .lang-selector select {
+            background: transparent;
             border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            color: #000;
-            font-weight: bold;
+            color: var(--gold-light);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
             cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+            outline: none;
+            padding: 0.3rem;
         }
 
-        .connect-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.6);
+        .lang-selector select option {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .lang-icon {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 0.6rem 1rem;
+            }
+
+            .header-number {
+                font-size: 1.2rem;
+                letter-spacing: 0.1rem;
+            }
+
+            .header-logo {
+                width: 40px;
+                height: 40px;
+            }
+
+            .lang-selector {
+                padding: 0.4rem 0.6rem;
+            }
+
+            .lang-selector select {
+                font-size: 0.8rem;
+            }
         }
 
         .hero {
-            position: relative;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 150px 20px 50px;
-            z-index: 1;
-        }
-
-        .token-image {
-            width: 300px;
-            height: 300px;
-            animation: rotate-glow 8s linear infinite;
-            filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.6));
-        }
-
-        @keyframes rotate-glow {
-            0% { transform: rotate(0deg); filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.6)); }
-            50% { filter: drop-shadow(0 0 60px rgba(255, 215, 0, 0.9)); }
-            100% { transform: rotate(360deg); filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.6)); }
-        }
-
-        h1 {
-            font-size: 90px;
-            margin: 30px 0;
-            background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
-            letter-spacing: 8px;
-            font-weight: bold;
-        }
-
-        .tagline {
-            font-size: 26px;
-            margin: 20px 0;
-            color: #ffd700;
-            font-style: italic;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-        }
-
-        .subtitle {
-            font-size: 18px;
-            max-width: 700px;
-            line-height: 1.8;
-            margin: 20px auto;
-            opacity: 0.9;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            margin-top: 50px;
-        }
-
-        .btn {
-            padding: 18px 45px;
-            font-size: 18px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-            letter-spacing: 1px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            color: #000;
-            box-shadow: 0 5px 25px rgba(255, 215, 0, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 3px solid #ffd700;
-            color: #ffd700;
-        }
-
-        .btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 35px rgba(255, 215, 0, 0.6);
-        }
-
-        section {
+            padding: 2rem;
             position: relative;
-            padding: 100px 50px;
-            z-index: 1;
+            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.1) 0%, #0a0a0a 70%);
         }
 
-        .container {
+        .coin-image {
+            width: clamp(200px, 40vw, 350px);
+            height: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.5));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .ritual-number {
+            font-family: 'Courier New', monospace;
+            font-size: clamp(3rem, 12vw, 8rem);
+            font-weight: 700;
+            color: var(--number-highlight);
+            letter-spacing: 0.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 30px var(--accent-glow);
+            animation: pulse 5.2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.9; text-shadow: 0 0 30px var(--accent-glow); }
+            50% { opacity: 1; text-shadow: 0 0 50px var(--accent-glow), 0 0 80px var(--accent-glow); }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--gold-light);
+            margin-bottom: 1rem;
+            font-weight: 300;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        .cta-button {
+            background: transparent;
+            border: 2px solid var(--gold-primary);
+            border-radius: 6px;
+            color: var(--gold-primary);
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            background: var(--gold-primary);
+            color: var(--bg-primary);
+            box-shadow: 0 0 40px var(--accent-glow);
+        }
+
+        .section {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 6rem 2rem;
         }
 
-        h2 {
-            font-size: 55px;
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 2rem;
             text-align: center;
-            margin-bottom: 60px;
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 3px;
+            color: var(--gold-light);
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
         }
 
-        .meaning-section {
-            background: rgba(255, 215, 0, 0.05);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 20px;
-            padding: 50px;
-            margin-bottom: 60px;
-            backdrop-filter: blur(10px);
+        .narrative-content {
+            max-width: 720px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
         }
 
-        .meaning-section h3 {
-            font-size: 32px;
-            color: #ffd700;
-            margin-bottom: 25px;
-            text-align: center;
+        .narrative-content p {
+            margin-bottom: 1.5rem;
         }
 
-        .meaning-section p {
-            font-size: 20px;
-            line-height: 2;
-            text-align: center;
-            margin: 15px 0;
+        .narrative-content strong {
+            color: var(--accent);
+            font-weight: 600;
         }
 
-        .number-breakdown {
+        .ritual-steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .digit {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid #ffd700;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.3s;
+        .step {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(212, 175, 55, 0.05) 100%);
+            padding: 2rem;
+            border-left: 4px solid var(--gold-primary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .digit:hover {
-            background: rgba(255, 215, 0, 0.2);
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(212, 175, 55, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .digit-number {
-            font-size: 48px;
-            color: #ffd700;
-            font-weight: bold;
-            margin-bottom: 10px;
+        .step:hover::before {
+            opacity: 1;
         }
 
-        .digit-meaning {
-            font-size: 14px;
-            opacity: 0.8;
+        .step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 0 30px var(--accent-glow), inset 0 0 30px rgba(212, 175, 55, 0.05);
         }
 
-        .tokenomics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+        .step-number {
+            color: var(--number-highlight);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-family: 'Courier New', monospace;
         }
 
-        .token-card {
-            background: rgba(255, 215, 0, 0.05);
-            backdrop-filter: blur(10px);
-            padding: 35px;
-            border-radius: 20px;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            transition: all 0.3s;
-            text-align: center;
+        .step-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--gold-light);
         }
 
-        .token-card:hover {
-            transform: translateY(-10px);
-            border-color: #ffd700;
-            box-shadow: 0 15px 50px rgba(255, 215, 0, 0.3);
-            background: rgba(255, 215, 0, 0.1);
-        }
-
-        .token-card h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #ffd700;
-        }
-
-        .token-card p {
-            font-size: 18px;
+        .step-description {
+            color: var(--text-secondary);
             line-height: 1.6;
         }
 
-        .roadmap {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
+        .contract-address {
+            background: var(--bg-primary);
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--gold-light);
+            word-break: break-all;
+            border: 1px solid var(--gold-primary);
+            border-radius: 6px;
+            box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.1);
         }
 
-        .roadmap-item {
-            background: rgba(255, 215, 0, 0.05);
-            backdrop-filter: blur(10px);
-            padding: 35px;
-            border-radius: 20px;
-            border-left: 5px solid #ffd700;
-            transition: all 0.3s;
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .roadmap-item:hover {
-            transform: translateX(15px);
-            background: rgba(255, 215, 0, 0.1);
-            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.2);
+        .data-card {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(212, 175, 55, 0.03) 100%);
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .roadmap-item h3 {
-            font-size: 28px;
-            color: #ffd700;
-            margin-bottom: 20px;
+        .data-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .roadmap-item p {
-            margin: 10px 0;
-            font-size: 16px;
-            line-height: 1.8;
+        .data-card:hover::before {
+            opacity: 1;
         }
 
-        .social-links {
+        .data-card:hover {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 30px var(--accent-glow);
+            transform: translateY(-5px);
+        }
+
+        .data-value {
+            font-size: 2.5rem;
+            color: var(--number-highlight);
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 0.5rem;
+        }
+
+        .data-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+        }
+
+        .activity-log {
+            max-width: 720px;
+            margin: 3rem auto 0;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(212, 175, 55, 0.03) 100%);
+            padding: 2rem;
+            font-family: 'Courier New', monospace;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+        }
+
+        .log-entry {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            color: var(--text-secondary);
+        }
+
+        .log-entry:last-child {
+            border-bottom: none;
+        }
+
+        .log-date {
+            color: var(--gold-primary);
+            margin-right: 1rem;
+        }
+
+        .community-links {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
         }
 
-        .social-btn {
-            width: 70px;
-            height: 70px;
-            background: rgba(255, 215, 0, 0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid #ffd700;
+        .community-link {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(212, 175, 55, 0.05) 100%);
+            padding: 1.5rem 2rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .community-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2), transparent);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .community-link:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .community-link:hover {
+            border-color: var(--gold-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px var(--accent-glow);
+        }
+
+        .community-link-title {
+            font-size: 1.2rem;
+            color: var(--gold-primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .community-link-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer {
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, rgba(212, 175, 55, 0.05) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-number {
+            font-family: 'Courier New', monospace;
+            font-size: 3rem;
+            color: var(--number-highlight);
+            margin-bottom: 1rem;
+            letter-spacing: 0.3rem;
+        }
+
+        .footer-tagline {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .disclaimer {
+            max-width: 720px;
+            margin: 2rem auto 0;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .next-ritual {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+            border: 2px solid var(--gold-primary);
+            border-radius: 12px;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .next-ritual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            50%, 100% { left: 200%; }
+        }
+
+        .ritual-date {
+            font-size: 1.5rem;
+            color: var(--gold-light);
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .ritual-number {
+                letter-spacing: 0.2rem;
+            }
+
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .community-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .pattern-visual {
+            margin: 4rem 0;
+            position: relative;
+        }
+
+        .pattern-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .pattern-node {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(212, 175, 55, 0.08) 100%);
+            padding: 2.5rem;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            position: relative;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .pattern-node::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, var(--gold-primary), transparent, var(--gold-primary));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .pattern-node:hover::before {
+            opacity: 0.5;
+        }
+
+        .pattern-node:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .pattern-number {
+            font-family: 'Courier New', monospace;
+            font-size: 3rem;
+            color: var(--gold-light);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+            font-weight: 700;
+        }
+
+        .pattern-label {
+            color: var(--gold-primary);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+        }
+
+        .pattern-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .pattern-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2), transparent);
+            border: 2px solid var(--gold-primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-
-        .social-btn:hover {
-            background: #ffd700;
-            transform: scale(1.2) rotate(360deg);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
-        }
-
-        footer {
-            text-align: center;
-            padding: 50px;
-            background: rgba(0, 0, 0, 0.5);
-            position: relative;
-            z-index: 1;
-            border-top: 2px solid rgba(255, 215, 0, 0.3);
-        }
-
-        .contract-address {
-            background: rgba(255, 215, 0, 0.1);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 25px auto;
-            max-width: 650px;
             font-family: 'Courier New', monospace;
-            word-break: break-all;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            color: #ffd700;
-            font-size: 14px;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            font-weight: 700;
+            animation: pulse-center 4s ease-in-out infinite;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4), inset 0 0 20px rgba(212, 175, 55, 0.2);
+            z-index: 10;
+            pointer-events: none;
         }
 
-        .mantra-section {
-            background: rgba(255, 215, 0, 0.05);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 20px;
-            padding: 50px;
-            margin: 40px 0;
+        @keyframes pulse-center {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 0 40px rgba(212, 175, 55, 0.4), inset 0 0 20px rgba(212, 175, 55, 0.2);
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.1);
+                box-shadow: 0 0 60px rgba(212, 175, 55, 0.6), inset 0 0 30px rgba(212, 175, 55, 0.3);
+            }
+        }
+
+        .pattern-connection {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+            height: 2px;
+            opacity: 0.3;
+            animation: flow 3s linear infinite;
+        }
+
+        @keyframes flow {
+            0% { opacity: 0.1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 0.1; }
+        }
+
+        .mystical-text {
+            max-width: 720px;
+            margin: 3rem auto 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), transparent);
+            border-left: 3px solid var(--gold-primary);
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--text-secondary);
             text-align: center;
-        }
-
-        .mantra-text {
-            font-size: 36px;
-            color: #ffd700;
-            font-weight: bold;
-            letter-spacing: 10px;
-            margin: 20px 0;
-            animation: pulse 3s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.7; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 60px; letter-spacing: 4px; }
-            h2 { font-size: 40px; }
-            .token-image { width: 200px; height: 200px; }
-            .cta-buttons { flex-direction: column; }
-            nav { padding: 15px 20px; }
-            .nav-links { display: none; }
-            .mantra-text { font-size: 24px; letter-spacing: 5px; }
-            .number-breakdown { grid-template-columns: repeat(4, 1fr); }
+            .pattern-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding-bottom: 2rem;
+            }
+
+            .pattern-center {
+                position: relative;
+                margin: 2rem auto;
+                top: auto;
+                left: auto;
+                transform: translate(0, 0);
+            }
+
+            @keyframes pulse-center {
+                0%, 100% { 
+                    transform: translate(0, 0) scale(1);
+                }
+                50% { 
+                    transform: translate(0, 0) scale(1.1);
+                }
+            }
+
+            .pattern-number {
+                font-size: 2.5rem;
+            }
+
+            .pattern-visual {
+                margin: 3rem 0;
+            }
         }
     </style>
-</head>
-<body>
-    <div class="golden-particles" id="particles"></div>
-
-    <nav>
-        <div class="logo">5207418</div>
-        <div class="nav-links">
-            <a href="#about">Significado</a>
-            <a href="#tokenomics">Tokenomics</a>
-            <a href="#roadmap">Roadmap</a>
-            <a href="#community">Comunidad</a>
-        </div>
-        <button class="connect-btn" onclick="connectWallet()">Conectar Wallet</button>
-    </nav>
-
-    <section class="hero">
-        <img src="data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='150' cy='150' r='145' fill='%23C9A962' stroke='%23D4AF37' stroke-width='3'/%3E%3Ccircle cx='150' cy='150' r='125' fill='none' stroke='%23B8922A' stroke-width='2'/%3E%3Ctext x='150' y='60' font-family='Georgia' font-size='32' fill='%23654321' text-anchor='middle' font-weight='bold' letter-spacing='3'%3E5207418%3C/text%3E%3Cellipse cx='150' cy='180' rx='40' ry='65' fill='url(%23pillGradient)'/%3E%3Cpath d='M110 180 Q110 130 150 130 Q190 130 190 180 Z' fill='%23E8F4F8' opacity='0.9'/%3E%3Cpath d='M150 130 L155 135 L150 140 L145 135 Z' fill='white' opacity='0.6'/%3E%3Cpath d='M140 150 L145 155 L140 160 L135 155 Z' fill='white' opacity='0.5'/%3E%3Cpath d='M160 155 L165 160 L160 165 L155 160 Z' fill='white' opacity='0.5'/%3E%3Cpath d='M150 165 L153 168 L150 171 L147 168 Z' fill='white' opacity='0.7'/%3E%3Cdefs%3E%3ClinearGradient id='pillGradient' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23C9A962;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23D4AF37;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E" alt="5207418 Token" class="token-image">
-        <h1>5207418</h1>
-        <p class="tagline">El Código de Abundancia Infinita</p>
-        <p class="subtitle">
-            Basado en la numerología de Grigori Grabovoi, este código sagrado representa 
-            la manifestación de la riqueza material y espiritual en el blockchain de Solana.
-        </p>
-        <div class="cta-buttons">
-            <button class="btn btn-primary" onclick="buyToken()">Adquirir Token</button>
-            <button class="btn btn-secondary" onclick="viewChart()">Ver Gráfico</button>
-        </div>
-    </section>
-
-    <section id="about">
-        <div class="container">
-            <h2>El Poder del Código ✨</h2>
-            
-            <div class="meaning-section">
-                <h3>¿Qué es 5207418?</h3>
-                <p>
-                    5207418 es un código numérico de Grigori Grabovoi diseñado para atraer 
-                    dinero rápido e inesperado. Este número sagrado vibra en una frecuencia 
-                    que alinea tu energía con la abundancia universal.
-                </p>
-                <p style="margin-top: 30px; font-style: italic; color: #ffd700;">
-                    "Al repetir o visualizar estos números, sintonizamos nuestra conciencia 
-                    con la frecuencia de la prosperidad infinita"
-                </p>
-            </div>
-
-            <h3 style="text-align: center; color: #ffd700; margin: 50px 0 30px;">Desglose Numerológico</h3>
-            <div class="number-breakdown">
-                <div class="digit">
-                    <div class="digit-number">5</div>
-                    <div class="digit-meaning">Cambio<br>& Libertad</div>
-                </div>
-                <div class="digit">
-                    <div class="digit-number">2</div>
-                    <div class="digit-meaning">Equilibrio<br>& Dualidad</div>
-                </div>
-                <div class="digit">
-                    <div class="digit-number">0</div>
-                    <div class="digit-meaning">Potencial<br>Infinito</div>
-                </div>
-                <div class="digit">
-                    <div class="digit-number">7</div>
-                    <div class="digit-meaning">Sabiduría<br>Espiritual</div>
-                </div>
-                <div class="digit">
-                    <div class="digit-number">4</div>
-                    <div class="digit-meaning">Estabilidad<br>& Fundación</div>
-                </div>
-                <div class="digit">
-                    <div class="digit-number">1</div>
-                    <div class="digit-meaning">Nuevos<br>Comienzos</div>
-                </div>
-                <div class="digit">
-                    <div class="digit-number">8</div>
-                    <div class="digit-meaning">Abundancia<br>Material</div>
-                </div>
-            </div>
-
-            <div class="mantra-section">
-                <h3>Mantra de Activación</h3>
-                <p style="margin: 20px 0; font-size: 18px;">
-                    Repite estos números con intención clara para manifestar abundancia:
-                </p>
-                <div class="mantra-text">5 2 0 7 4 1 8</div>
-                <p style="margin-top: 20px; font-size: 16px; opacity: 0.8;">
-                    Visualiza, mantén la fe, y permite que la prosperidad fluya hacia ti
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="tokenomics">
-        <div class="container">
-            <h2>Tokenomics 💎</h2>
-            <div class="tokenomics-grid">
-                <div class="token-card">
-                    <h3>💰 Suministro Total</h3>
-                    <p style="font-size: 36px; color: #ffd700; font-weight: bold;">520,741,800</p>
-                    <p style="margin-top: 10px; font-size: 14px;">Cada dígito honra el código sagrado</p>
-                </div>
-                <div class="token-card">
-                    <h3>🌊 Liquidez Bloqueada</h3>
-                    <p style="font-size: 36px; color: #ffd700; font-weight: bold;">85%</p>
-                    <p style="margin-top: 10px; font-size: 14px;">Seguridad y estabilidad garantizadas</p>
-                </div>
-                <div class="token-card">
-                    <h3>📢 Marketing</h3>
-                    <p style="font-size: 36px; color: #ffd700; font-weight: bold;">8%</p>
-                    <p style="margin-top: 10px; font-size: 14px;">Expansión de conciencia global</p>
-                </div>
-                <div class="token-card">
-                    <h3>🎁 Comunidad</h3>
-                    <p style="font-size: 36px; color: #ffd700; font-weight: bold;">7%</p>
-                    <p style="margin-top: 10px; font-size: 14px;">Recompensas para holders sagrados</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="roadmap">
-        <div class="container">
-            <h2>Roadmap de Manifestación 🗺️</h2>
-            <div class="roadmap">
-                <div class="roadmap-item">
-                    <h3>Fase 1: La Semilla de Abundancia 🌱</h3>
-                    <p>✅ Lanzamiento del token en Solana</p>
-                    <p>✅ Portal web y redes sociales espirituales</p>
-                    <p>✅ Campaña de concientización numerológica</p>
-                    <p>✅ Primeros 5,207 holders alcanzados</p>
-                </div>
-                <div class="roadmap-item">
-                    <h3>Fase 2: Expansión Energética ⚡</h3>
-                    <p>🔄 Listado en CoinGecko & CoinMarketCap</p>
-                    <p>🔄 Partnership con comunidades espirituales</p>
-                    <p>🔄 Alcanzar 52,074 holders</p>
-                    <p>🔄 Primera meditación masiva comunitaria</p>
-                </div>
-                <div class="roadmap-item">
-                    <h3>Fase 3: Manifestación Colectiva 🌟</h3>
-                    <p>⏳ Listados en exchanges principales</p>
-                    <p>⏳ Lanzamiento de NFTs numerológicos</p>
-                    <p>⏳ Academia de Códigos Grabovoi</p>
-                    <p>⏳ 520,741 holders unidos en abundancia</p>
-                </div>
-                <div class="roadmap-item">
-                    <h3>Fase 4: Abundancia Universal 🌌</h3>
-                    <p>⏳ Plataforma DeFi de manifestación</p>
-                    <p>⏳ Fundación benéfica 5207418</p>
-                    <p>⏳ Metaverso de abundancia consciente</p>
-                    <p>⏳ Cambio de consciencia planetaria</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="community">
-        <div class="container">
-            <h2>Únete a la Frecuencia 🧘‍♂️</h2>
-            <p style="text-align: center; font-size: 20px; margin-bottom: 40px; line-height: 1.8;">
-                Somos una comunidad de buscadores espirituales que utilizan la tecnología blockchain<br>
-                para manifestar abundancia colectiva a través de los códigos sagrados de Grabovoi.
-            </p>
-            <div class="social-links">
-                <a href="#" class="social-btn" title="Twitter/X">𝕏</a>
-                <a href="#" class="social-btn" title="Telegram">💬</a>
-                <a href="#" class="social-btn" title="Discord">🎮</a>
-                <a href="#" class="social-btn" title="Instagram">📱</a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <h3 style="color: #ffd700; font-size: 28px; margin-bottom: 20px;">Dirección del Contrato</h3>
-        <div class="contract-address">
-            5207418xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        </div>
-        <p style="margin-top: 30px; opacity: 0.8; font-size: 16px;">
-            Este es un token de utilidad espiritual. No es un consejo financiero.<br>
-            Invierte con conciencia y haz tu propia investigación.
-        </p>
-        <p style="margin-top: 20px; opacity: 0.7; font-size: 14px;">
-            © 2025 5207418 Token. Todos los derechos reservados. ✨<br>
-            "La abundancia es tu derecho de nacimiento"
-        </p>
-    </footer>
-
     <script>
-        // Create golden particles
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 50; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            const size = Math.random() * 4 + 2;
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.top = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 6 + 's';
-            particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
-            particlesContainer.appendChild(particle);
-        }
+        // Auto-detect language based on browser settings
+        const userLang = navigator.language || navigator.userLanguage;
+        const lang = userLang.startsWith('es') ? 'es' : 'en';
 
-        function connectWallet() {
-            alert('✨ Conectando con tu Wallet de Solana...\n\nEn una implementación real, esto se conectaría a Phantom, Solflare u otra wallet de Solana.');
-        }
+        const translations = {
+            en: {
+                title: "520 741 8 - A Ritual Encoded On-Chain",
+                heroSubtitle: "A ritual encoded on-chain",
+                heroDescription: "Repeat the sequence. Hold the symbol. Observe what manifests.",
+                ctaButton: "Enter the Ritual",
+                sectionWhat: "What is 520 741 8?",
+                narrativeP1: "A numerical pattern. A manifestation practice. A symbol anchored to the blockchain.",
+                narrativeP2: "<strong>520 741 8</strong> has been used as a cipher for intention setting—a sequence repeated to align thought with outcome. Not magic. Not science. Something observed.",
+                narrativeP3: "This token exists as a permanent marker of participation in this practice. Each holder becomes part of a distributed ritual, a network of observers repeating the same sequence, watching what unfolds.",
+                narrativeP4: "The pattern is now immutable. The ritual, ongoing.",
+                patternIntention: "Intention",
+                patternIntentionDesc: "The seed of desire. What you wish to manifest begins here.",
+                patternRepetition: "Repetition",
+                patternRepetitionDesc: "The act of encoding. Speak it, write it, hold it in mind.",
+                patternInfinity: "Infinity",
+                patternInfinityDesc: "The eternal loop. What returns, what cycles, what completes.",
+                patternManifestation: "Manifestation",
+                patternManifestationDesc: "The outcome observed. Not promised. Not guaranteed. Simply witnessed.",
+                mysticalQuote: '"The pattern does not create reality. It aligns you to observe what was always coming."',
+                sectionRitual: "How to Participate",
+                step1Title: "Acquire the Symbol",
+                step1Desc: "Hold the token. It serves as your key to the collective ritual.",
+                step2Title: "Repeat the Sequence",
+                step2Desc: "Say aloud or write: <strong>520 741 8</strong><br>Morning and night. Seven times. Or as you feel called.",
+                step3Title: "Observe",
+                step3Desc: "Pay attention to synchronicities, patterns, outcomes. Document privately or share anonymously with the network.",
+                step4Title: "Reflect",
+                step4Desc: "The ritual has no end date. The blockchain remembers every participant.",
+                nextRitualTitle: "Next Ritual Cycle",
+                nextRitualDate: "Full Moon • January 29, 2026",
+                nextRitualDesc: "Coordinated global observation. No promises. Only presence.",
+                sectionProof: "Proof on Chain",
+                holdersLabel: "Holders",
+                holdersDesc: "Participants in the ritual",
+                supplyLabel: "Supply Locked",
+                supplyDesc: "Immutable. Permanent.",
+                statusLabel: "Network Status",
+                statusDesc: "The network observes in real time",
+                durationLabel: "Duration",
+                durationDesc: "No rug. Only ritual.",
+                liveChartLink: "View Live Chart on Pump.fun →",
+                sectionActivity: "The Ritual Breathes",
+                log1: "Landing deployed",
+                log2: "Token deployed on Solana",
+                log3: "First 50 holders invited personally",
+                log4: "Community channel opened",
+                log5: "520 741 8 encoded into blockchain",
+                activityNote1: "Built by observers, for observers.",
+                activityNote2: "No team tokens. No presale. No hype.",
+                activityNote3: "Only those who resonate, participate.",
+                sectionCommunity: "Join the Network",
+                communityP1: "This is not a movement. It is an observation.",
+                communityP2: "The first holders were invited directly—those who already understood the sequence. Now, the ritual is open to any who find it.",
+                communityP3: "Participation is voluntary. Belief is not required. Only curiosity.",
+                xCommunity: "𝕏 Community",
+                xCommunityDesc: "Share observations.<br>Discuss patterns.<br>Stay present.",
+                pumpPortal: "Pump.fun Portal",
+                pumpPortalDesc: "Trade, observe,<br>participate in the<br>economic ritual.",
+                communityEthos1: "No shilling. No spam. No false promises.",
+                communityEthos2: "Document what you notice.",
+                communityEthos3: "The ritual works for those who observe, not for those who demand.",
+                footerTagline: "A sequence. A symbol. A choice.",
+                footerAction: "Repeat. Hold. Observe.",
+                disclaimer: "This is not financial advice. This is a symbolic experiment. Participate at your own discernment. The blockchain is permanent. Your intentions are yours alone."
+            },
+            es: {
+                title: "520 741 8 - Un Ritual Codificado en Blockchain",
+                heroSubtitle: "Un ritual codificado en blockchain",
+                heroDescription: "Repite la secuencia. Sostén el símbolo. Observa lo que se manifiesta.",
+                ctaButton: "Entrar al Ritual",
+                sectionWhat: "¿Qué es 520 741 8?",
+                narrativeP1: "Un patrón numérico. Una práctica de manifestación. Un símbolo anclado a la blockchain.",
+                narrativeP2: "<strong>520 741 8</strong> se ha utilizado como cifra para establecer intenciones—una secuencia repetida para alinear pensamiento con resultado. No es magia. No es ciencia. Es algo observado.",
+                narrativeP3: "Este token existe como marcador permanente de participación en esta práctica. Cada holder se convierte en parte de un ritual distribuido, una red de observadores repitiendo la misma secuencia, observando lo que se despliega.",
+                narrativeP4: "El patrón ahora es inmutable. El ritual, continuo.",
+                patternIntention: "Intención",
+                patternIntentionDesc: "La semilla del deseo. Lo que deseas manifestar comienza aquí.",
+                patternRepetition: "Repetición",
+                patternRepetitionDesc: "El acto de codificar. Dilo, escríbelo, mantenlo en mente.",
+                patternInfinity: "Infinito",
+                patternInfinityDesc: "El bucle eterno. Lo que retorna, lo que cicla, lo que completa.",
+                patternManifestation: "Manifestación",
+                patternManifestationDesc: "El resultado observado. No prometido. No garantizado. Simplemente atestiguado.",
+                mysticalQuote: '"El patrón no crea la realidad. Te alinea para observar lo que siempre estaba por venir."',
+                sectionRitual: "Cómo Participar",
+                step1Title: "Adquiere el Símbolo",
+                step1Desc: "Sostén el token. Sirve como tu llave al ritual colectivo.",
+                step2Title: "Repite la Secuencia",
+                step2Desc: "Di en voz alta o escribe: <strong>520 741 8</strong><br>Mañana y noche. Siete veces. O como te sientas llamado.",
+                step3Title: "Observa",
+                step3Desc: "Presta atención a sincronicidades, patrones, resultados. Documenta privadamente o comparte anónimamente con la red.",
+                step4Title: "Reflexiona",
+                step4Desc: "El ritual no tiene fecha final. La blockchain recuerda cada participante.",
+                nextRitualTitle: "Próximo Ciclo Ritual",
+                nextRitualDate: "Luna Llena • 29 de Enero, 2026",
+                nextRitualDesc: "Observación global coordinada. Sin promesas. Solo presencia.",
+                sectionProof: "Prueba en Cadena",
+                holdersLabel: "Holders",
+                holdersDesc: "Participantes en el ritual",
+                supplyLabel: "Supply Bloqueado",
+                supplyDesc: "Inmutable. Permanente.",
+                statusLabel: "Estado de Red",
+                statusDesc: "La red observa en tiempo real",
+                durationLabel: "Duración",
+                durationDesc: "Sin rug. Solo ritual.",
+                liveChartLink: "Ver Gráfico en Vivo en Pump.fun →",
+                sectionActivity: "El Ritual Respira",
+                log1: "Landing desplegada",
+                log2: "Token desplegado en Solana",
+                log3: "Primeros 50 holders invitados personalmente",
+                log4: "Canal comunitario abierto",
+                log5: "520 741 8 codificado en blockchain",
+                activityNote1: "Construido por observadores, para observadores.",
+                activityNote2: "Sin tokens de equipo. Sin preventa. Sin hype.",
+                activityNote3: "Solo quienes resuenan, participan.",
+                sectionCommunity: "Únete a la Red",
+                communityP1: "Esto no es un movimiento. Es una observación.",
+                communityP2: "Los primeros holders fueron invitados directamente—aquellos que ya entendían la secuencia. Ahora, el ritual está abierto para cualquiera que lo encuentre.",
+                communityP3: "La participación es voluntaria. No se requiere creencia. Solo curiosidad.",
+                xCommunity: "Comunidad 𝕏",
+                xCommunityDesc: "Comparte observaciones.<br>Discute patrones.<br>Permanece presente.",
+                pumpPortal: "Portal Pump.fun",
+                pumpPortalDesc: "Tradea, observa,<br>participa en el<br>ritual económico.",
+                communityEthos1: "Sin promoción agresiva. Sin spam. Sin falsas promesas.",
+                communityEthos2: "Documenta lo que notas.",
+                communityEthos3: "El ritual funciona para quienes observan, no para quienes exigen.",
+                footerTagline: "Una secuencia. Un símbolo. Una elección.",
+                footerAction: "Repite. Sostén. Observa.",
+                disclaimer: "Esto no es consejo financiero. Este es un experimento simbólico. Participa bajo tu propio discernimiento. La blockchain es permanente. Tus intenciones son solo tuyas."
+            }
+        };
 
-        function buyToken() {
-            alert('💎 Redirigiendo al DEX...\n\nEn una implementación real, esto abriría Jupiter, Raydium u otro exchange descentralizado de Solana donde podrás intercambiar SOL por tokens 5207418.');
-        }
+        const t = translations[lang];
 
-        function viewChart() {
-            alert('📊 Abriendo gráfico en vivo...\n\nEn una implementación real, esto mostraría el gráfico de trading en tiempo real en DexScreener o similar.');
-        }
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // Parallax effect on scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const particles = document.querySelectorAll('.particle');
-            particles.forEach((particle, index) => {
-                const speed = (index % 3 + 1) * 0.1;
-                particle.style.transform = `translateY(${scrolled * speed}px)`;
-            });
+        document.addEventListener('DOMContentLoaded', function() {
+            document.title = t.title;
+            document.documentElement.lang = lang;
         });
     </script>
+</head>
+<body>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <img src="assets/images/coin.gif" alt="520 741 8 Token" class="coin-image">
+        <div class="ritual-number">520 741 8</div>
+        <div class="hero-subtitle"><script>document.write(t.heroSubtitle)</script></div>
+        <p class="hero-description"><script>document.write(t.heroDescription)</script></p>
+        <a href="#ritual" class="cta-button"><script>document.write(t.ctaButton)</script></a>
+    </section>
+
+    <!-- NARRATIVE SECTION -->
+    <section class="section">
+        <h2 class="section-title">What is 520 741 8?</h2>
+        <div class="narrative-content">
+            <p>A numerical pattern. A manifestation practice. A symbol anchored to the blockchain.</p>
+            
+            <p><strong>520 741 8</strong> has been used as a cipher for intention setting—a sequence repeated to align thought with outcome. Not magic. Not science. Something observed.</p>
+            
+            <p>This token exists as a permanent marker of participation in this practice. Each holder becomes part of a distributed ritual, a network of observers repeating the same sequence, watching what unfolds.</p>
+            
+            <p>The pattern is now immutable. The ritual, ongoing.</p>
+        </div>
+
+        <div class="pattern-visual">
+            <div class="pattern-grid">
+                <div class="pattern-node">
+                    <div class="pattern-number">520</div>
+                    <div class="pattern-label">Intention</div>
+                    <p class="pattern-desc">The seed of desire. What you wish to manifest begins here.</p>
+                </div>
+
+                <div class="pattern-node">
+                    <div class="pattern-number">741</div>
+                    <div class="pattern-label">Repetition</div>
+                    <p class="pattern-desc">The act of encoding. Speak it, write it, hold it in mind.</p>
+                </div>
+
+                <div class="pattern-node">
+                    <div class="pattern-number">8</div>
+                    <div class="pattern-label">Infinity</div>
+                    <p class="pattern-desc">The eternal loop. What returns, what cycles, what completes.</p>
+                </div>
+
+                <div class="pattern-node">
+                    <div class="pattern-number">∞</div>
+                    <div class="pattern-label">Manifestation</div>
+                    <p class="pattern-desc">The outcome observed. Not promised. Not guaranteed. Simply witnessed.</p>
+                </div>
+
+                <div class="pattern-center">
+                    520 741 8
+                </div>
+            </div>
+        </div>
+
+        <div class="mystical-text">
+            "The pattern does not create reality. It aligns you to observe what was always coming."
+        </div>
+    </section>
+
+    <!-- RITUAL SECTION -->
+    <section class="section" id="ritual">
+        <h2 class="section-title">How to Participate</h2>
+        
+        <div class="ritual-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-title">Acquire the Symbol</div>
+                <p class="step-description">Hold the token. It serves as your key to the collective ritual.</p>
+                <div class="contract-address">CbQWhrS4pqkkux39Atbda69HuQ5neALeUxjf6vK8pump</div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-title">Repeat the Sequence</div>
+                <p class="step-description">Say aloud or write: <strong>520 741 8</strong><br>
+                Morning and night. Seven times. Or as you feel called.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-title">Observe</div>
+                <p class="step-description">Pay attention to synchronicities, patterns, outcomes. Document privately or share anonymously with the network.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-title">Reflect</div>
+                <p class="step-description">The ritual has no end date. The blockchain remembers every participant.</p>
+            </div>
+        </div>
+
+        <div class="next-ritual">
+            <h3 style="color: var(--gold-primary); margin-bottom: 0.5rem;">Next Ritual Cycle</h3>
+            <div class="ritual-date">Full Moon • January 29, 2026</div>
+            <p style="margin-top: 1rem; color: var(--text-secondary);">Coordinated global observation. No promises. Only presence.</p>
+        </div>
+    </section>
+
+    <!-- ON-CHAIN DATA SECTION -->
+    <section class="section">
+        <h2 class="section-title">Proof on Chain</h2>
+        
+        <div class="data-grid">
+            <div class="data-card">
+                <div class="data-value">—</div>
+                <div class="data-label">Holders</div>
+                <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.85rem;">Participants in the ritual</p>
+            </div>
+
+            <div class="data-card">
+                <div class="data-value">100%</div>
+                <div class="data-label">Supply Locked</div>
+                <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.85rem;">Immutable. Permanent.</p>
+            </div>
+
+            <div class="data-card">
+                <div class="data-value">Live</div>
+                <div class="data-label">Network Status</div>
+                <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.85rem;">The network observes in real time</p>
+            </div>
+
+            <div class="data-card">
+                <div class="data-value">∞</div>
+                <div class="data-label">Duration</div>
+                <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.85rem;">No rug. Only ritual.</p>
+            </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 3rem; color: var(--text-secondary);">
+            <a href="https://join.pump.fun/HSag/vgbuja3n" target="_blank" style="color: var(--gold-primary); text-decoration: none; border-bottom: 1px solid var(--gold-primary); transition: all 0.3s ease;">View Live Chart on Pump.fun →</a>
+        </p>
+    </section>
+
+    <!-- ACTIVITY LOG SECTION -->
+    <section class="section">
+        <h2 class="section-title">The Ritual Breathes</h2>
+        
+        <div class="activity-log">
+            <div class="log-entry">
+                <span class="log-date">[Jan 11, 2026]</span> Landing deployed
+            </div>
+            <div class="log-entry">
+                <span class="log-date">[Jan 10, 2026]</span> Token deployed on Solana
+            </div>
+            <div class="log-entry">
+                <span class="log-date">[Jan 10, 2026]</span> First 50 holders invited personally
+            </div>
+            <div class="log-entry">
+                <span class="log-date">[Jan 09, 2026]</span> Community channel opened
+            </div>
+            <div class="log-entry">
+                <span class="log-date">[Genesis]</span> 520 741 8 encoded into blockchain
+            </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 3rem; color: var(--text-secondary); font-style: italic;">
+            Built by observers, for observers.<br>
+            No team tokens. No presale. No hype.<br>
+            Only those who resonate, participate.
+        </p>
+    </section>
+
+    <!-- COMMUNITY SECTION -->
+    <section class="section">
+        <h2 class="section-title">Join the Network</h2>
+        
+        <div class="narrative-content" style="margin-bottom: 3rem;">
+            <p>This is not a movement. It is an observation.</p>
+            
+            <p>The first holders were invited directly—those who already understood the sequence. Now, the ritual is open to any who find it.</p>
+            
+            <p>Participation is voluntary. Belief is not required. Only curiosity.</p>
+        </div>
+
+        <div class="community-links">
+            <a href="https://twitter.com/i/communities/2008779038760865953" target="_blank" class="community-link">
+                <div class="community-link-title">𝕏 Community</div>
+                <div class="community-link-desc">Share observations.<br>Discuss patterns.<br>Stay present.</div>
+            </a>
+
+            <a href="https://join.pump.fun/HSag/vgbuja3n" target="_blank" class="community-link">
+                <div class="community-link-title">Pump.fun Portal</div>
+                <div class="community-link-desc">Trade, observe,<br>participate in the<br>economic ritual.</div>
+            </a>
+        </div>
+
+        <p style="text-align: center; margin-top: 3rem; color: var(--text-secondary); max-width: 600px; margin-left: auto; margin-right: auto;">
+            No shilling. No spam. No false promises.<br>
+            Document what you notice.<br>
+            The ritual works for those who observe, not for those who demand.
+        </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-number">520 741 8</div>
+        <div class="footer-tagline">A sequence. A symbol. A choice.</div>
+        <p style="color: var(--gold-light); font-size: 1.2rem; margin-bottom: 1rem;">
+            Repeat. Hold. Observe.
+        </p>
+        
+        <div class="disclaimer">
+            This is not financial advice. This is a symbolic experiment. Participate at your own discernment. The blockchain is permanent. Your intentions are yours alone.
+        </div>
+    </footer>
 </body>
 </html>
