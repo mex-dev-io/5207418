@@ -1,0 +1,84 @@
+<!-- Cómo Activar (completada) -->
+    <section class="px-6 py-32">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-20">
+          <div class="inline-block px-8 py-3 border border-primary/30 rounded-full text-sm uppercase tracking-widest mb-6 text-primary">
+            Protocolo de Activación
+          </div>
+          <h2 class="text-5xl md:text-6xl font-bold mb-6 font-orbitron">Cómo Activar el Código</h2>
+          <p class="text-lg opacity-70 max-w-3xl mx-auto">Sigue estos pasos para sincronizar tu consciencia con la frecuencia de abundancia</p>
+        </div>
+
+        <div class="space-y-8 max-w-4xl mx-auto">
+          <div class="card">
+            <div class="flex items-start gap-6">
+              <div class="w-16 h-16 rounded-full border-2 border-primary flex items-center justify-center text-3xl flex-shrink-0">1</div>
+              <div>
+                <h3 class="text-2xl font-bold mb-3 font-orbitron">Respira Profundo</h3>
+                <p class="opacity-80">Siéntate en silencio, inhala por 5 segundos, exhala por 7. Repite 3 veces.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="flex items-start gap-6">
+              <div class="w-16 h-16 rounded-full border-2 border-primary flex items-center justify-center text-3xl flex-shrink-0">2</div>
+              <div>
+                <h3 class="text-2xl font-bold mb-3 font-orbitron">Visualiza el Código</h3>
+                <p class="opacity-80">Mira fijamente la secuencia 5207518 durante 2 minutos con intención plena.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="flex items-start gap-6">
+              <div class="w-16 h-16 rounded-full border-2 border-primary flex items-center justify-center text-3xl flex-shrink-0">3</div>
+              <div>
+                <h3 class="text-2xl font-bold mb-3 font-orbitron">Repite Mentalmente</h3>
+                <p class="opacity-80">Repite internamente “520 751 8” 21 veces con gratitud anticipada.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="flex items-start gap-6">
+              <div class="w-16 h-16 rounded-full border-2 border-primary flex items-center justify-center text-3xl flex-shrink-0">4</div>
+              <div>
+                <h3 class="text-2xl font-bold mb-3 font-orbitron">Siente la Abundancia</h3>
+                <p class="opacity-80">Imagina cómo se siente tener libertad financiera total. Vive esa emoción ahora.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="flex items-start gap-6">
+              <div class="w-16 h-16 rounded-full border-2 border-primary flex items-center justify-center text-3xl flex-shrink-0">5</div>
+              <div>
+                <h3 class="text-2xl font-bold mb-3 font-orbitron">Actúa Inspirado</h3>
+                <p class="opacity-80">Realiza una acción alineada con la abundancia hoy (inversión, creación, generosidad).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Partículas dinámicas -->
+  <script>
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.style.width = particle.style.height = Math.random() * 5 + 3 + 'px';
+      particle.style.left = Math.random() * 100 + 'vw';
+      particle.style.top = Math.random() * 100 + 'vh';
+      particle.style.animationDuration = Math.random() * 20 + 10 + 's';
+      particle.style.animationDelay = Math.random() * 5 + 's';
+      document.getElementById('particles').appendChild(particle);
+
+      setTimeout(() => particle.remove(), 30000);
+    }
+
+    // Generar 40 partículas
+    for (let i = 0; i < 40; i++) {
+      setTimeout(createParticle, i * 200);
+    }
+  </script>
+</body>
+</html>
