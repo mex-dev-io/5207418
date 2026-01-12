@@ -33,17 +33,20 @@
         }
 
         :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a1a;
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
             --gold-primary: #d4af37;
             --gold-light: #f4d03f;
             --text-primary: #e8e8e8;
             --text-secondary: #a0a0a0;
+            --ambient-light: #207f7e;
+            --ambient-light-soft: rgba(32, 127, 126, 0.08);
+            --ambient-light-glow: rgba(32, 127, 126, 0.15);
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--bg-primary);
+            background: #000000;
             color: var(--text-primary);
             line-height: 1.6;
             padding-top: 100px;
@@ -124,20 +127,103 @@
             align-items: center;
             text-align: center;
             padding: 2rem;
-            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.1) 0%, #0a0a0a 70%);
+            background: #000000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Luz principal - superior izquierda */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: -20%;
+            width: 90%;
+            height: 120%;
+            background: radial-gradient(ellipse 80% 60% at 30% 30%,
+                rgba(32, 127, 126, 0.18) 0%,
+                rgba(32, 127, 126, 0.08) 25%,
+                rgba(32, 127, 126, 0.03) 50%,
+                transparent 75%);
+            animation: studioLightDrift 25s ease-in-out infinite;
+            pointer-events: none;
+            will-change: transform, opacity;
+        }
+
+        /* Luz de relleno - inferior derecha, más tenue */
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            right: -30%;
+            width: 80%;
+            height: 100%;
+            background: radial-gradient(ellipse 70% 50% at 70% 70%,
+                rgba(32, 127, 126, 0.06) 0%,
+                rgba(32, 127, 126, 0.02) 40%,
+                transparent 70%);
+            animation: studioFillDrift 32s ease-in-out infinite;
+            pointer-events: none;
+            will-change: transform, opacity;
+        }
+
+        @keyframes studioLightDrift {
+            0%, 100% { 
+                transform: translate(0%, 0%) scale(1);
+                opacity: 1;
+            }
+            25% { 
+                transform: translate(5%, 3%) scale(1.05);
+                opacity: 0.9;
+            }
+            50% { 
+                transform: translate(2%, 6%) scale(1.02);
+                opacity: 1;
+            }
+            75% { 
+                transform: translate(-3%, 2%) scale(0.98);
+                opacity: 0.95;
+            }
+        }
+
+        @keyframes studioFillDrift {
+            0%, 100% { 
+                transform: translate(0%, 0%) scale(1);
+                opacity: 0.7;
+            }
+            33% { 
+                transform: translate(-4%, -2%) scale(1.03);
+                opacity: 0.8;
+            }
+            66% { 
+                transform: translate(3%, -4%) scale(0.97);
+                opacity: 0.6;
+            }
+        }
+
+        .coin-container {
+            position: relative;
+            z-index: 2;
         }
 
         .coin-image {
             width: clamp(200px, 40vw, 350px);
             height: auto;
             margin-bottom: 2rem;
-            filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.5));
-            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8))
+                    drop-shadow(0 0 60px rgba(32, 127, 126, 0.12));
+            animation: coinFloat 8s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        @keyframes coinFloat {
+            0%, 100% { 
+                transform: translateY(0px);
+            }
+            50% { 
+                transform: translateY(-12px);
+            }
         }
 
         .ritual-number {
@@ -147,13 +233,21 @@
             color: var(--gold-light);
             letter-spacing: 0.5rem;
             margin-bottom: 2rem;
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
-            animation: pulse 5.2s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.25);
+            animation: numberPulse 10s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.9; }
-            50% { opacity: 1; text-shadow: 0 0 50px rgba(212, 175, 55, 0.6); }
+        @keyframes numberPulse {
+            0%, 100% { 
+                opacity: 0.9;
+                text-shadow: 0 0 40px rgba(212, 175, 55, 0.25);
+            }
+            50% { 
+                opacity: 1; 
+                text-shadow: 0 0 50px rgba(212, 175, 55, 0.35);
+            }
         }
 
         .hero-subtitle {
@@ -161,6 +255,8 @@
             color: var(--gold-light);
             margin-bottom: 1rem;
             font-weight: 300;
+            position: relative;
+            z-index: 2;
         }
 
         .hero-description {
@@ -168,6 +264,8 @@
             color: var(--text-secondary);
             max-width: 600px;
             margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
         }
 
         .cta-button {
@@ -182,11 +280,13 @@
             text-decoration: none;
             display: inline-block;
             margin: 0.5rem;
+            position: relative;
+            z-index: 2;
         }
 
         .cta-button.primary {
             background: var(--gold-primary);
-            color: var(--bg-primary);
+            color: #000000;
         }
 
         .cta-button:hover {
@@ -227,10 +327,12 @@
         .pattern-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
+            grid-template-rows: 1fr auto 1fr;
+            gap: 2rem;
             max-width: 900px;
             margin: 4rem auto;
             position: relative;
+            align-items: stretch;
         }
 
         .pattern-node {
@@ -240,10 +342,20 @@
             border-radius: 12px;
             text-align: center;
             transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 200px;
         }
 
+        .pattern-node:nth-child(1) { grid-area: 1 / 1 / 2 / 2; }
+        .pattern-node:nth-child(2) { grid-area: 1 / 2 / 2 / 3; }
+        .pattern-center { grid-area: 2 / 1 / 3 / 3; }
+        .pattern-node:nth-child(4) { grid-area: 3 / 1 / 4 / 2; }
+        .pattern-node:nth-child(5) { grid-area: 3 / 2 / 4 / 3; }
+
         .pattern-node:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
             box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
         }
 
@@ -269,29 +381,30 @@
         }
 
         .pattern-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.2), transparent);
+            grid-area: 2 / 1 / 3 / 3;
+            justify-self: center;
+            align-self: center;
+            width: 130px;
+            height: 130px;
+            background: var(--bg-primary);
             border: 2px solid var(--gold-primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Courier New', monospace;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--gold-light);
             font-weight: 700;
             animation: pulse-center 4s ease-in-out infinite;
             z-index: 10;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.3), inset 0 0 30px rgba(212, 175, 55, 0.1);
+            margin: 1rem 0;
         }
 
         @keyframes pulse-center {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.1); }
+            0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(212, 175, 55, 0.3), inset 0 0 30px rgba(212, 175, 55, 0.1); }
+            50% { transform: scale(1.08); box-shadow: 0 0 60px rgba(212, 175, 55, 0.5), inset 0 0 40px rgba(212, 175, 55, 0.2); }
         }
 
         .mystical-text {
@@ -593,6 +706,8 @@
             margin-top: 2rem;
             padding: 1rem;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
         }
 
         .lang-switcher span {
@@ -622,8 +737,8 @@
             color: var(--bg-primary);
             border-color: var(--gold-primary);
         }
-            display: none;
-        }
+
+        .disclaimer {
             max-width: 720px;
             margin: 2rem auto 0;
             color: var(--text-secondary);
@@ -648,13 +763,31 @@
 
             .pattern-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                grid-template-rows: auto;
+                gap: 1.5rem;
+            }
+
+            .pattern-node:nth-child(1),
+            .pattern-node:nth-child(2),
+            .pattern-node:nth-child(4),
+            .pattern-node:nth-child(5) {
+                grid-area: auto;
             }
 
             .pattern-center {
-                position: relative;
-                margin: 2rem auto;
-                transform: translate(0, 0);
+                grid-area: auto;
+                order: 2;
+                margin: 0.5rem auto;
+            }
+
+            .pattern-node:nth-child(1) { order: 1; }
+            .pattern-node:nth-child(2) { order: 3; }
+            .pattern-node:nth-child(4) { order: 4; }
+            .pattern-node:nth-child(5) { order: 5; }
+
+            .pattern-node {
+                min-height: auto;
+                padding: 2rem;
             }
 
             .contract-address {
@@ -683,7 +816,9 @@
 
     <!-- HERO SECTION -->
     <section class="hero">
-        <img src="./assets/images/coin.gif" alt="520 741 8 Token" class="coin-image">
+        <div class="coin-container">
+            <img src="./assets/images/coin.gif" alt="520 741 8 Token" class="coin-image">
+        </div>
         <div class="ritual-number">520 741 8</div>
         <div class="hero-subtitle" data-translate="heroSubtitle">A ritual encoded on-chain</div>
         <p class="hero-description" data-translate="heroDescription">Repeat the sequence. Hold the symbol. Observe what manifests.</p>
@@ -726,6 +861,8 @@
                 <p class="pattern-desc" data-translate="patternRepetitionDesc">The act of encoding. Speak it, write it, hold it in mind.</p>
             </div>
 
+            <div class="pattern-center">520 741 8</div>
+
             <div class="pattern-node">
                 <div class="pattern-number">8</div>
                 <div class="pattern-label" data-translate="patternInfinity">Infinity</div>
@@ -737,8 +874,6 @@
                 <div class="pattern-label" data-translate="patternManifestation">Manifestation</div>
                 <p class="pattern-desc" data-translate="patternManifestationDesc">The outcome observed. Not promised. Not guaranteed. Simply witnessed.</p>
             </div>
-
-            <div class="pattern-center">520 741 8</div>
         </div>
 
         <div class="mystical-text" data-translate="mysticalQuote">
@@ -1399,125 +1534,6 @@
                     this.src = this.src.replace('.gif', '.png');
                 } else {
                     this.style.opacity = '0.3';
-                }
-            });
-        });
-    </script>
-</body>
-</html> Quan sát điều biểu hiện.",
-                buyButton: "Mua 520 741 8",
-                ctaButton: "Tham Gia Nghi Lễ"
-            }
-        };
-
-        function changeLanguage(lang) {
-            const t = translations[lang] || translations.en;
-            
-            document.querySelectorAll('[data-translate]').forEach(el => {
-                const key = el.getAttribute('data-translate');
-                if (t[key]) {
-                    el.textContent = t[key];
-                }
-            });
-
-            localStorage.setItem('selectedLang', lang);
-        }
-
-        function copyContract(btn) {
-            const text = 'CbQWhrS4pqkkux39Atbda69HuQ5neALeUxjf6vK8pump';
-            
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(text).then(() => {
-                    btn.textContent = 'Copied!';
-                    btn.classList.add('copied');
-                    setTimeout(() => {
-                        btn.textContent = 'Copy';
-                        btn.classList.remove('copied');
-                    }, 2000);
-                }).catch(() => fallbackCopy(text, btn));
-            } else {
-                fallbackCopy(text, btn);
-            }
-        }
-
-        function fallbackCopy(text, btn) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            textarea.style.position = 'fixed';
-            textarea.style.opacity = '0';
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-            
-            btn.textContent = 'Copied!';
-            btn.classList.add('copied');
-            setTimeout(() => {
-                btn.textContent = 'Copy';
-                btn.classList.remove('copied');
-            }, 2000);
-        }
-
-        // Auto-detect language
-        window.addEventListener('DOMContentLoaded', function() {
-            const savedLang = localStorage.getItem('selectedLang');
-            const browserLang = navigator.language || navigator.userLanguage;
-            
-            let defaultLang = 'en';
-            if (savedLang) {
-                defaultLang = savedLang;
-            } else if (browserLang) {
-                if (browserLang.startsWith('es')) defaultLang = 'es';
-                else if (browserLang.startsWith('zh')) defaultLang = 'zh';
-                else if (browserLang.startsWith('ja')) defaultLang = 'ja';
-                else if (browserLang.startsWith('ko')) defaultLang = 'ko';
-                else if (browserLang.startsWith('ru')) defaultLang = 'ru';
-                else if (browserLang.startsWith('pt')) defaultLang = 'pt';
-                else if (browserLang.startsWith('tr')) defaultLang = 'tr';
-                else if (browserLang.startsWith('vi')) defaultLang = 'vi';
-            }
-            
-            document.getElementById('langSelect').value = defaultLang;
-            if (defaultLang !== 'en') {
-                changeLanguage(defaultLang);
-            }
-
-            // Simple analytics
-            try {
-                const visits = parseInt(localStorage.getItem('visits') || '0') + 1;
-                localStorage.setItem('visits', visits.toString());
-                localStorage.setItem('lastVisit', new Date().toISOString());
-            } catch(e) {
-                console.log('Analytics unavailable');
-            }
-
-            // Track scroll depth
-            let maxScroll = 0;
-            window.addEventListener('scroll', function() {
-                const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-                if (scrollPercent > maxScroll && scrollPercent >= 25) {
-                    maxScroll = Math.floor(scrollPercent / 25) * 25;
-                    if (maxScroll % 25 === 0) {
-                        try {
-                            const scrolls = JSON.parse(localStorage.getItem('scrollDepths') || '[]');
-                            scrolls.push({depth: maxScroll, time: new Date().toISOString()});
-                            localStorage.setItem('scrollDepths', JSON.stringify(scrolls.slice(-10)));
-                        } catch(e) {}
-                    }
-                }
-            });
-        });
-
-        // Image error handling
-        document.querySelectorAll('img').forEach(img => {
-            img.addEventListener('error', function() {
-                // Try PNG fallback if GIF fails
-                if (this.src.endsWith('.gif')) {
-                    this.src = this.src.replace('.gif', '.png');
-                } else {
-                    // Hide if both fail
-                    this.style.opacity = '0.3';
-                    this.alt = '⬡ 520 741 8';
                 }
             });
         });
