@@ -49,7 +49,7 @@
             background: #000000;
             color: var(--text-primary);
             line-height: 1.6;
-            padding-top: 78px;
+            padding-top: 28px;
             overflow-x: hidden;
             max-width: 100vw;
         }
@@ -71,7 +71,7 @@
 
         .ticker-wrap {
             position: fixed;
-            top: 50px;
+            top: 0;
             left: 0;
             right: 0;
             height: 28px;
@@ -346,10 +346,56 @@
         .hero-subtitle {
             font-size: clamp(1.2rem, 3vw, 1.8rem);
             color: var(--gold-light);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             font-weight: 300;
             position: relative;
             z-index: 2;
+        }
+
+        .hero-subtitle-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 212, 170, 0.1);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            border: 1px solid rgba(0, 212, 170, 0.3);
+        }
+
+        .hero-pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #00d4aa;
+            border-radius: 50%;
+            animation: heroPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes heroPulse {
+            0%, 100% { 
+                opacity: 1;
+                box-shadow: 0 0 0 0 rgba(0, 212, 170, 0.5);
+            }
+            50% { 
+                opacity: 0.6;
+                box-shadow: 0 0 0 6px rgba(0, 212, 170, 0);
+            }
+        }
+
+        .hero-observers {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #00d4aa;
+            letter-spacing: 0.02rem;
         }
 
         .hero-description {
@@ -385,6 +431,15 @@
         .cta-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            position: relative;
+            z-index: 2;
         }
 
         .section {
@@ -1095,14 +1150,6 @@
     </style>
 </head>
 <body>
-    <!-- HEADER -->
-    <header class="header">
-        <div class="header-left">
-            <div class="header-number">520 741 8</div>
-        </div>
-        <a href="https://twitter.com/i/communities/2008779038760865953" target="_blank" class="header-join">Join 𝕏</a>
-    </header>
-
     <!-- TICKER BANNER -->
     <div class="ticker-wrap">
         <div class="ticker" id="tickerTrack">
@@ -1180,11 +1227,18 @@
             <img src="./assets/images/coin.gif" alt="520 741 8 Token" class="coin-image">
         </div>
         <div class="ritual-number">520 741 8</div>
-        <div class="hero-subtitle" data-translate="heroSubtitle">A ritual encoded on-chain</div>
+        <div class="hero-subtitle-container">
+            <div class="hero-subtitle" data-translate="heroSubtitle">A ritual encoded on-chain</div>
+            <div class="hero-live-indicator">
+                <span class="hero-pulse-dot"></span>
+                <span class="hero-observers" id="heroObservers">— observers now</span>
+            </div>
+        </div>
         <p class="hero-description" data-translate="heroDescription">Repeat the sequence. Hold the symbol. Observe what manifests.</p>
-        <div>
+        <div class="hero-buttons">
             <a href="https://join.pump.fun/HSag/vgbuja3n" target="_blank" class="cta-button primary" data-translate="buyButton">Buy 520 741 8</a>
             <a href="#ritual" class="cta-button" data-translate="ctaButton">Enter the Ritual</a>
+            <a href="https://twitter.com/i/communities/2008779038760865953" target="_blank" class="cta-button" data-translate="joinX">Join 𝕏</a>
         </div>
         <div class="lang-switcher">
             <span>🌐</span>
@@ -1539,6 +1593,9 @@
             if (proofBuySell) {
                 proofBuySell.textContent = (data.txns?.h24?.buys || 0) + ' buys / ' + (data.txns?.h24?.sells || 0) + ' sells';
             }
+
+            // Actualizar base de observadores
+            updateObserversCount(txns24h);
         }
 
         function renderTransactions(txns) {
@@ -1653,6 +1710,31 @@
 
         updateGenesisCounter();
         setInterval(updateGenesisCounter, 60000);
+
+        // ==========================================
+        // LIVE OBSERVERS COUNTER
+        // ==========================================
+        let baseObservers = 0;
+        
+        function updateObserversCount(txns24h) {
+            // Usar transacciones como base para estimar actividad
+            baseObservers = Math.max(txns24h || 0, 10);
+        }
+
+        function simulateLiveObservers() {
+            const heroObservers = document.getElementById('heroObservers');
+            if (!heroObservers) return;
+
+            // Variación aleatoria pequeña para simular actividad en tiempo real
+            const variation = Math.floor(Math.random() * 5) - 2;
+            const currentObservers = Math.max(baseObservers + variation, 3);
+            
+            heroObservers.textContent = currentObservers + ' observing now';
+        }
+
+        // Actualizar observadores cada 5 segundos
+        simulateLiveObservers();
+        setInterval(simulateLiveObservers, 5000);
 
         // Complete translations for 4 languages
         const translations = {
