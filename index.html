@@ -49,7 +49,7 @@
             background: #000000;
             color: var(--text-primary);
             line-height: 1.6;
-            padding-top: 100px;
+            padding-top: 78px;
             overflow-x: hidden;
             max-width: 100vw;
         }
@@ -61,12 +61,82 @@
             right: 0;
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 0.8rem 2rem;
+            border-bottom: none;
+            padding: 0.6rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             z-index: 1000;
+        }
+
+        .ticker-wrap {
+            position: fixed;
+            top: 50px;
+            left: 0;
+            right: 0;
+            height: 28px;
+            background: linear-gradient(90deg, rgba(32, 127, 126, 0.15) 0%, rgba(0,0,0,0.9) 50%, rgba(32, 127, 126, 0.15) 100%);
+            border-bottom: 1px solid rgba(32, 127, 126, 0.3);
+            overflow: hidden;
+            z-index: 999;
+        }
+
+        .ticker {
+            display: flex;
+            width: max-content;
+            animation: tickerScroll 30s linear infinite;
+        }
+
+        .ticker:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes tickerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ticker-content {
+            display: flex;
+            align-items: center;
+            height: 28px;
+            padding: 0 2rem;
+            gap: 3rem;
+            white-space: nowrap;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .ticker-label {
+            color: rgba(32, 127, 126, 0.8);
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.05rem;
+        }
+
+        .ticker-value {
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+
+        .ticker-value.positive {
+            color: #00d4aa;
+        }
+
+        .ticker-value.negative {
+            color: #ff6b6b;
+        }
+
+        .ticker-separator {
+            color: rgba(32, 127, 126, 0.4);
+            font-size: 0.6rem;
         }
 
         .lang-selector {
@@ -117,6 +187,28 @@
             font-weight: 700;
             letter-spacing: 0.2rem;
             text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .header-join {
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .header-join:hover {
+            background: var(--gold-primary);
+            color: #000000;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
         }
 
         .hero {
@@ -228,15 +320,16 @@
 
         .ritual-number {
             font-family: 'Courier New', monospace;
-            font-size: clamp(3rem, 12vw, 8rem);
+            font-size: clamp(2.2rem, 10vw, 8rem);
             font-weight: 700;
             color: var(--gold-light);
-            letter-spacing: 0.5rem;
+            letter-spacing: clamp(0.2rem, 2vw, 0.5rem);
             margin-bottom: 2rem;
             text-shadow: 0 0 40px rgba(212, 175, 55, 0.25);
             animation: numberPulse 10s ease-in-out infinite;
             position: relative;
             z-index: 2;
+            white-space: nowrap;
         }
 
         @keyframes numberPulse {
@@ -531,7 +624,7 @@
         }
 
         .data-value {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--gold-light);
             font-weight: 700;
             font-family: 'Courier New', monospace;
@@ -543,6 +636,136 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
+        }
+
+        .data-change {
+            margin-top: 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .data-change.positive {
+            color: #00d4aa;
+        }
+
+        .data-change.negative {
+            color: #ff6b6b;
+        }
+
+        .data-subtext {
+            margin-top: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-style: italic;
+        }
+
+        .recent-txns {
+            max-width: 900px;
+            margin: 3rem auto 0;
+            background: linear-gradient(135deg, var(--bg-secondary), rgba(32, 127, 126, 0.03));
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(32, 127, 126, 0.2);
+        }
+
+        .recent-txns h3 {
+            color: var(--gold-light);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+
+        .txns-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .txn-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto;
+            gap: 1rem;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .txn-item:hover {
+            background: rgba(32, 127, 126, 0.1);
+        }
+
+        .txn-item.buy {
+            border-left-color: #00d4aa;
+        }
+
+        .txn-item.sell {
+            border-left-color: #ff6b6b;
+        }
+
+        .txn-item.loading {
+            justify-content: center;
+            color: var(--text-secondary);
+            border-left-color: transparent;
+        }
+
+        .txn-type {
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .txn-type.buy {
+            background: rgba(0, 212, 170, 0.2);
+            color: #00d4aa;
+        }
+
+        .txn-type.sell {
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+        }
+
+        .txn-wallet {
+            color: var(--gold-light);
+        }
+
+        .txn-wallet a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .txn-wallet a:hover {
+            color: var(--gold-primary);
+        }
+
+        .txn-amount {
+            color: var(--text-primary);
+            text-align: right;
+        }
+
+        .txn-time {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            text-align: right;
+            min-width: 70px;
+        }
+
+        @media (max-width: 600px) {
+            .txn-item {
+                grid-template-columns: auto 1fr auto;
+                gap: 0.5rem;
+            }
+            .txn-time {
+                display: none;
+            }
         }
 
         .next-ritual {
@@ -561,29 +784,153 @@
             font-family: 'Courier New', monospace;
         }
 
+        .live-pulse-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .live-pulse {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(32, 127, 126, 0.1);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            border: 1px solid rgba(32, 127, 126, 0.3);
+        }
+
+        .pulse-dot {
+            width: 10px;
+            height: 10px;
+            background: #00d4aa;
+            border-radius: 50%;
+            animation: pulseDot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { 
+                opacity: 1;
+                box-shadow: 0 0 0 0 rgba(0, 212, 170, 0.5);
+            }
+            50% { 
+                opacity: 0.7;
+                box-shadow: 0 0 0 8px rgba(0, 212, 170, 0);
+            }
+        }
+
+        .pulse-text {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #00d4aa;
+            letter-spacing: 0.1rem;
+        }
+
+        .genesis-counter {
+            text-align: center;
+        }
+
+        .counter-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+        }
+
+        .counter-value {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+
         .activity-log {
             max-width: 720px;
-            margin: 3rem auto;
-            background: linear-gradient(135deg, var(--bg-secondary), rgba(212, 175, 55, 0.03));
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--bg-secondary), rgba(32, 127, 126, 0.03));
             padding: 2rem;
             font-family: 'Courier New', monospace;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 8px;
+            border: 1px solid rgba(32, 127, 126, 0.2);
+            border-radius: 12px;
+        }
+
+        .log-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--gold-light);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(32, 127, 126, 0.2);
+        }
+
+        .log-header-icon {
+            color: var(--gold-primary);
         }
 
         .log-entry {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
             padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             color: var(--text-secondary);
+            font-size: 0.9rem;
         }
 
         .log-entry:last-child {
             border-bottom: none;
         }
 
+        .log-entry.completed .log-status {
+            color: #00d4aa;
+        }
+
+        .log-entry.upcoming {
+            opacity: 0.7;
+        }
+
+        .log-entry.upcoming .log-status {
+            color: var(--gold-primary);
+        }
+
+        .log-entry.upcoming .log-date {
+            color: rgba(212, 175, 55, 0.6);
+        }
+
+        .log-status {
+            min-width: 20px;
+            text-align: center;
+        }
+
         .log-date {
             color: var(--gold-primary);
-            margin-right: 1rem;
+            min-width: 120px;
+        }
+
+        .log-divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15rem;
+        }
+
+        .log-divider::before,
+        .log-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
         }
 
         .community-links {
@@ -638,64 +985,6 @@
             color: var(--gold-light);
             margin-bottom: 1rem;
             letter-spacing: 0.3rem;
-        }
-
-        .recent-holders {
-            max-width: 900px;
-            margin: 3rem auto 0;
-            background: linear-gradient(135deg, var(--bg-secondary), rgba(212, 175, 55, 0.03));
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .recent-holders h3 {
-            color: var(--gold-light);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-size: 1.3rem;
-        }
-
-        .holders-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .holder-item {
-            background: rgba(212, 175, 55, 0.05);
-            padding: 1rem;
-            border-radius: 8px;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .holder-item:hover {
-            border-color: var(--gold-primary);
-            transform: translateY(-2px);
-        }
-
-        .holder-address {
-            font-family: 'Courier New', monospace;
-            color: var(--gold-light);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .holder-time {
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-        }
-
-        .holder-badge {
-            display: inline-block;
-            background: var(--gold-primary);
-            color: var(--bg-primary);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            margin-top: 0.5rem;
         }
 
         .lang-switcher {
@@ -814,6 +1103,77 @@
         <a href="https://twitter.com/i/communities/2008779038760865953" target="_blank" class="header-join">Join 𝕏</a>
     </header>
 
+    <!-- TICKER BANNER -->
+    <div class="ticker-wrap">
+        <div class="ticker" id="tickerTrack">
+            <div class="ticker-content">
+                <div class="ticker-item">
+                    <span class="ticker-label">Price</span>
+                    <span class="ticker-value" id="tickerPrice">$0.000000</span>
+                </div>
+                <span class="ticker-separator">◆</span>
+                <div class="ticker-item">
+                    <span class="ticker-label">24h</span>
+                    <span class="ticker-value" id="tickerChange">0.00%</span>
+                </div>
+                <span class="ticker-separator">◆</span>
+                <div class="ticker-item">
+                    <span class="ticker-label">Market Cap</span>
+                    <span class="ticker-value" id="tickerMcap">$0</span>
+                </div>
+                <span class="ticker-separator">◆</span>
+                <div class="ticker-item">
+                    <span class="ticker-label">Volume 24h</span>
+                    <span class="ticker-value" id="tickerVolume">$0</span>
+                </div>
+                <span class="ticker-separator">◆</span>
+                <div class="ticker-item">
+                    <span class="ticker-label">Liquidity</span>
+                    <span class="ticker-value" id="tickerLiquidity">$0</span>
+                </div>
+                <span class="ticker-separator">◆</span>
+                <div class="ticker-item">
+                    <span class="ticker-label">520 741 8</span>
+                    <span class="ticker-value">LIVE</span>
+                </div>
+                <span class="ticker-separator">◆</span>
+            </div>
+            <!-- Duplicado para scroll infinito -->
+            <div class="ticker-content">
+                <div class="ticker-item">
+                    <span class="ticker-label">Price</span>
+                    <span class="ticker-value" id="tickerPrice2">$0.000000</span>
+                </div>
+                <span class="ticker-separator">◆</span>
+                <div class="ticker-item">
+                    <span class="ticker-label">24h</span>
+                    <span class="ticker-value" id="tickerChange2">0.00%</span>
+                </div>
+                <span class="ticker-separator">◆</span>
+                <div class="ticker-item">
+                    <span class="ticker-label">Market Cap</span>
+                    <span class="ticker-value" id="tickerMcap2">$0</span>
+                </div>
+                <span class="ticker-separator">◆</span>
+                <div class="ticker-item">
+                    <span class="ticker-label">Volume 24h</span>
+                    <span class="ticker-value" id="tickerVolume2">$0</span>
+                </div>
+                <span class="ticker-separator">◆</span>
+                <div class="ticker-item">
+                    <span class="ticker-label">Liquidity</span>
+                    <span class="ticker-value" id="tickerLiquidity2">$0</span>
+                </div>
+                <span class="ticker-separator">◆</span>
+                <div class="ticker-item">
+                    <span class="ticker-label">520 741 8</span>
+                    <span class="ticker-value">LIVE</span>
+                </div>
+                <span class="ticker-separator">◆</span>
+            </div>
+        </div>
+    </div>
+
     <!-- HERO SECTION -->
     <section class="hero">
         <div class="coin-container">
@@ -923,73 +1283,46 @@
     </section>
 
     <!-- ON-CHAIN DATA SECTION -->
-    <section class="section">
+    <section class="section" id="proof">
         <h2 class="section-title" data-translate="sectionProof">Proof on Chain</h2>
         
         <div class="data-grid">
             <div class="data-card">
-                <div class="data-value">—</div>
-                <div class="data-label" data-translate="holdersLabel">Holders</div>
-                <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.85rem;" data-translate="holdersDesc">Participants in the ritual</p>
+                <div class="data-value" id="proofPrice">—</div>
+                <div class="data-label" data-translate="priceLabel">Price USD</div>
+                <p class="data-change" id="proofChange">—</p>
             </div>
 
             <div class="data-card">
-                <div class="data-value">100%</div>
-                <div class="data-label" data-translate="supplyLabel">Supply Locked</div>
-                <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.85rem;" data-translate="supplyDesc">Immutable. Permanent.</p>
+                <div class="data-value" id="proofMcap">—</div>
+                <div class="data-label" data-translate="mcapLabel">Market Cap</div>
+                <p class="data-subtext" data-translate="mcapDesc">Fully diluted</p>
             </div>
 
             <div class="data-card">
-                <div class="data-value">Live</div>
-                <div class="data-label" data-translate="statusLabel">Network Status</div>
-                <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.85rem;" data-translate="statusDesc">The network observes in real time</p>
+                <div class="data-value" id="proofLiquidity">—</div>
+                <div class="data-label" data-translate="liquidityLabel">Liquidity</div>
+                <p class="data-subtext" data-translate="liquidityDesc">Locked in pool</p>
             </div>
 
             <div class="data-card">
-                <div class="data-value">∞</div>
-                <div class="data-label" data-translate="durationLabel">Duration</div>
-                <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.85rem;" data-translate="durationDesc">No rug. Only ritual.</p>
+                <div class="data-value" id="proofTxns">—</div>
+                <div class="data-label" data-translate="txnsLabel">Txns 24h</div>
+                <p class="data-subtext" id="proofBuySell">— buys / — sells</p>
             </div>
         </div>
 
-        <div class="recent-holders">
-            <h3 data-translate="recentHolders">Recent Observers</h3>
-            <div class="holders-grid">
-                <div class="holder-item">
-                    <div class="holder-address">Abc...xyz1</div>
-                    <div class="holder-time">2 min ago</div>
-                    <span class="holder-badge" data-translate="newObserver">New Observer</span>
-                </div>
-                <div class="holder-item">
-                    <div class="holder-address">Def...uvw2</div>
-                    <div class="holder-time">5 min ago</div>
-                    <span class="holder-badge" data-translate="newObserver">New Observer</span>
-                </div>
-                <div class="holder-item">
-                    <div class="holder-address">Ghi...rst3</div>
-                    <div class="holder-time">12 min ago</div>
-                    <span class="holder-badge" data-translate="earlyObserver">Early Observer</span>
-                </div>
-                <div class="holder-item">
-                    <div class="holder-address">Jkl...opq4</div>
-                    <div class="holder-time">18 min ago</div>
-                    <span class="holder-badge" data-translate="earlyObserver">Early Observer</span>
-                </div>
-                <div class="holder-item">
-                    <div class="holder-address">Mno...lmn5</div>
-                    <div class="holder-time">25 min ago</div>
-                    <span class="holder-badge" data-translate="newObserver">New Observer</span>
-                </div>
-                <div class="holder-item">
-                    <div class="holder-address">Pqr...ijk6</div>
-                    <div class="holder-time">31 min ago</div>
-                    <span class="holder-badge" data-translate="earlyObserver">Early Observer</span>
+        <div class="recent-txns">
+            <h3 data-translate="recentTxns">Recent Transactions</h3>
+            <div class="txns-list" id="txnsList">
+                <div class="txn-item loading">
+                    <span class="txn-loading">Loading transactions...</span>
                 </div>
             </div>
         </div>
 
         <p style="text-align: center; margin-top: 3rem; color: var(--text-secondary);">
-            <a href="https://join.pump.fun/HSag/vgbuja3n" target="_blank" style="color: var(--gold-primary); text-decoration: none; border-bottom: 1px solid var(--gold-primary);" data-translate="liveChartLink">View Live Chart on Pump.fun →</a>
+            <a href="https://dexscreener.com/solana/CbQWhrS4pqkkux39Atbda69HuQ5neALeUxjf6vK8pump" target="_blank" style="color: var(--gold-primary); text-decoration: none; border-bottom: 1px solid var(--gold-primary);" data-translate="liveChartLink">View Live Chart on DexScreener →</a>
         </p>
     </section>
 
@@ -997,21 +1330,66 @@
     <section class="section">
         <h2 class="section-title" data-translate="sectionActivity">The Ritual Breathes</h2>
         
+        <!-- Live Pulse Indicator -->
+        <div class="live-pulse-container">
+            <div class="live-pulse">
+                <span class="pulse-dot"></span>
+                <span class="pulse-text">LIVE</span>
+            </div>
+            <div class="genesis-counter">
+                <div class="counter-label" data-translate="timeSinceGenesis">Time Since Genesis</div>
+                <div class="counter-value" id="genesisCounter">— days — hours — mins</div>
+            </div>
+        </div>
+
+        <!-- Activity Log -->
         <div class="activity-log">
-            <div class="log-entry">
-                <span class="log-date">[Jan 11, 2026]</span> <span data-translate="log1">Landing deployed</span>
+            <div class="log-header">
+                <span class="log-header-icon">◈</span>
+                <span data-translate="logHeader">Project Timeline</span>
             </div>
-            <div class="log-entry">
-                <span class="log-date">[Jan 10, 2026]</span> <span data-translate="log2">Token deployed on Solana</span>
+            <div class="log-entry completed">
+                <span class="log-status">✓</span>
+                <span class="log-date">[Genesis]</span>
+                <span data-translate="log5">520 741 8 encoded into blockchain</span>
             </div>
-            <div class="log-entry">
-                <span class="log-date">[Jan 10, 2026]</span> <span data-translate="log3">First 50 holders invited personally</span>
+            <div class="log-entry completed">
+                <span class="log-status">✓</span>
+                <span class="log-date">[Jan 09, 2026]</span>
+                <span data-translate="log4">Community channel opened</span>
             </div>
-            <div class="log-entry">
-                <span class="log-date">[Jan 09, 2026]</span> <span data-translate="log4">Community channel opened</span>
+            <div class="log-entry completed">
+                <span class="log-status">✓</span>
+                <span class="log-date">[Jan 10, 2026]</span>
+                <span data-translate="log2">Token deployed on Solana</span>
             </div>
-            <div class="log-entry">
-                <span class="log-date">[Genesis]</span> <span data-translate="log5">520 741 8 encoded into blockchain</span>
+            <div class="log-entry completed">
+                <span class="log-status">✓</span>
+                <span class="log-date">[Jan 10, 2026]</span>
+                <span data-translate="log3">First 50 holders invited personally</span>
+            </div>
+            <div class="log-entry completed">
+                <span class="log-status">✓</span>
+                <span class="log-date">[Jan 11, 2026]</span>
+                <span data-translate="log1">Landing deployed</span>
+            </div>
+            <div class="log-divider">
+                <span data-translate="upcoming">Upcoming</span>
+            </div>
+            <div class="log-entry upcoming">
+                <span class="log-status">◇</span>
+                <span class="log-date">[Jan 29, 2026]</span>
+                <span data-translate="log6">Full Moon Ritual — First coordinated observation</span>
+            </div>
+            <div class="log-entry upcoming">
+                <span class="log-status">◇</span>
+                <span class="log-date">[Q1 2026]</span>
+                <span data-translate="log7">520 holders milestone</span>
+            </div>
+            <div class="log-entry upcoming">
+                <span class="log-status">◇</span>
+                <span class="log-date">[Q2 2026]</span>
+                <span data-translate="log8">Ritual expansion — New platforms</span>
             </div>
         </div>
 
@@ -1067,6 +1445,215 @@
     </footer>
 
     <script>
+        // ==========================================
+        // DEXSCREENER API - LIVE DATA
+        // ==========================================
+        const TOKEN_ADDRESS = 'CbQWhrS4pqkkux39Atbda69HuQ5neALeUxjf6vK8pump';
+        
+        function formatPrice(price) {
+            if (!price) return '$0.000000';
+            const num = parseFloat(price);
+            if (num < 0.00001) return '$' + num.toFixed(9);
+            if (num < 0.01) return '$' + num.toFixed(6);
+            if (num < 1) return '$' + num.toFixed(4);
+            return '$' + num.toFixed(2);
+        }
+        
+        function formatNumber(num) {
+            if (!num) return '$0';
+            const n = parseFloat(num);
+            if (n >= 1000000000) return '$' + (n / 1000000000).toFixed(2) + 'B';
+            if (n >= 1000000) return '$' + (n / 1000000).toFixed(2) + 'M';
+            if (n >= 1000) return '$' + (n / 1000).toFixed(2) + 'K';
+            return '$' + n.toFixed(2);
+        }
+        
+        function formatChange(change) {
+            if (!change) return '0.00%';
+            const num = parseFloat(change);
+            const sign = num >= 0 ? '+' : '';
+            return sign + num.toFixed(2) + '%';
+        }
+
+        function timeAgo(timestamp) {
+            const now = Date.now();
+            const diff = now - timestamp;
+            const mins = Math.floor(diff / 60000);
+            if (mins < 1) return 'Just now';
+            if (mins < 60) return mins + 'm ago';
+            const hours = Math.floor(mins / 60);
+            if (hours < 24) return hours + 'h ago';
+            return Math.floor(hours / 24) + 'd ago';
+        }
+
+        function truncateWallet(address) {
+            if (!address) return '...';
+            return address.slice(0, 4) + '...' + address.slice(-4);
+        }
+        
+        function updateTickerUI(data) {
+            const price = formatPrice(data.priceUsd);
+            const change = formatChange(data.priceChange?.h24);
+            const mcap = formatNumber(data.marketCap);
+            const volume = formatNumber(data.volume?.h24);
+            const liquidity = formatNumber(data.liquidity?.usd);
+            const isPositive = parseFloat(data.priceChange?.h24 || 0) >= 0;
+            
+            // Actualizar ticker (ambos sets para scroll infinito)
+            ['', '2'].forEach(suffix => {
+                const priceEl = document.getElementById('tickerPrice' + suffix);
+                const changeEl = document.getElementById('tickerChange' + suffix);
+                const mcapEl = document.getElementById('tickerMcap' + suffix);
+                const volumeEl = document.getElementById('tickerVolume' + suffix);
+                const liquidityEl = document.getElementById('tickerLiquidity' + suffix);
+                
+                if (priceEl) priceEl.textContent = price;
+                if (changeEl) {
+                    changeEl.textContent = change;
+                    changeEl.className = 'ticker-value ' + (isPositive ? 'positive' : 'negative');
+                }
+                if (mcapEl) mcapEl.textContent = mcap;
+                if (volumeEl) volumeEl.textContent = volume;
+                if (liquidityEl) liquidityEl.textContent = liquidity;
+            });
+
+            // Actualizar sección Proof on Chain
+            const proofPrice = document.getElementById('proofPrice');
+            const proofChange = document.getElementById('proofChange');
+            const proofMcap = document.getElementById('proofMcap');
+            const proofLiquidity = document.getElementById('proofLiquidity');
+            const proofTxns = document.getElementById('proofTxns');
+            const proofBuySell = document.getElementById('proofBuySell');
+
+            if (proofPrice) proofPrice.textContent = price;
+            if (proofChange) {
+                proofChange.textContent = change + ' (24h)';
+                proofChange.className = 'data-change ' + (isPositive ? 'positive' : 'negative');
+            }
+            if (proofMcap) proofMcap.textContent = mcap;
+            if (proofLiquidity) proofLiquidity.textContent = liquidity;
+            
+            // Transacciones
+            const txns24h = (data.txns?.h24?.buys || 0) + (data.txns?.h24?.sells || 0);
+            if (proofTxns) proofTxns.textContent = txns24h.toLocaleString();
+            if (proofBuySell) {
+                proofBuySell.textContent = (data.txns?.h24?.buys || 0) + ' buys / ' + (data.txns?.h24?.sells || 0) + ' sells';
+            }
+        }
+
+        function renderTransactions(txns) {
+            const txnsList = document.getElementById('txnsList');
+            if (!txnsList || !txns || txns.length === 0) {
+                if (txnsList) {
+                    txnsList.innerHTML = '<div class="txn-item loading"><span class="txn-loading">No recent transactions</span></div>';
+                }
+                return;
+            }
+
+            txnsList.innerHTML = txns.slice(0, 8).map(txn => {
+                const isBuy = txn.txnType === 'buy';
+                const typeClass = isBuy ? 'buy' : 'sell';
+                const typeLabel = isBuy ? 'BUY' : 'SELL';
+                const wallet = truncateWallet(txn.maker);
+                const amount = formatNumber(txn.volumeUsd);
+                const time = timeAgo(txn.timestamp);
+                const solscanUrl = 'https://solscan.io/account/' + txn.maker;
+
+                return `
+                    <div class="txn-item ${typeClass}">
+                        <span class="txn-type ${typeClass}">${typeLabel}</span>
+                        <span class="txn-wallet"><a href="${solscanUrl}" target="_blank">${wallet}</a></span>
+                        <span class="txn-amount">${amount}</span>
+                        <span class="txn-time">${time}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        async function fetchTokenData() {
+            try {
+                const response = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${TOKEN_ADDRESS}`);
+                const data = await response.json();
+                
+                if (data.pairs && data.pairs.length > 0) {
+                    // Usar el par con mayor liquidez
+                    const bestPair = data.pairs.sort((a, b) => 
+                        (b.liquidity?.usd || 0) - (a.liquidity?.usd || 0)
+                    )[0];
+                    updateTickerUI(bestPair);
+
+                    // Fetch transacciones recientes
+                    fetchRecentTxns(bestPair.pairAddress);
+                }
+            } catch (error) {
+                console.log('Ticker update pending...');
+            }
+        }
+
+        async function fetchRecentTxns(pairAddress) {
+            try {
+                const response = await fetch(`https://api.dexscreener.com/latest/dex/pairs/solana/${pairAddress}`);
+                const data = await response.json();
+                
+                if (data.pair && data.pair.txns) {
+                    // DexScreener no da transacciones individuales en la API pública
+                    // Usamos los datos agregados para simular actividad reciente
+                    // Para txns reales necesitarías Birdeye o Helius
+                }
+            } catch (error) {
+                console.log('Txns fetch pending...');
+            }
+        }
+
+        // Simular transacciones recientes basado en datos reales del token
+        // (DexScreener API pública no provee txns individuales)
+        function generateRecentActivity() {
+            const txnsList = document.getElementById('txnsList');
+            if (!txnsList) return;
+            
+            // Mostrar mensaje de datos en vivo
+            txnsList.innerHTML = `
+                <div class="txn-item" style="justify-content: center; border-left-color: var(--gold-primary);">
+                    <span style="color: var(--text-secondary);">
+                        📊 Live data available on 
+                        <a href="https://dexscreener.com/solana/${TOKEN_ADDRESS}" target="_blank" style="color: var(--gold-primary);">DexScreener</a>
+                    </span>
+                </div>
+            `;
+        }
+        
+        // Fetch inicial y cada 30 segundos
+        fetchTokenData();
+        generateRecentActivity();
+        setInterval(fetchTokenData, 30000);
+
+        // ==========================================
+        // GENESIS COUNTER
+        // ==========================================
+        const GENESIS_DATE = new Date('2026-01-09T00:00:00Z');
+
+        function updateGenesisCounter() {
+            const now = new Date();
+            const diff = now - GENESIS_DATE;
+            
+            if (diff < 0) {
+                document.getElementById('genesisCounter').textContent = 'Genesis approaching...';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+            const counterEl = document.getElementById('genesisCounter');
+            if (counterEl) {
+                counterEl.textContent = `${days}d ${hours}h ${mins}m`;
+            }
+        }
+
+        updateGenesisCounter();
+        setInterval(updateGenesisCounter, 60000);
+
         // Complete translations for 4 languages
         const translations = {
             en: {
