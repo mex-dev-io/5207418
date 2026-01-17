@@ -219,9 +219,19 @@
             align-items: center;
             text-align: center;
             padding: 2rem;
+            padding-top: 1rem;
             background: #000000;
             position: relative;
             overflow: hidden;
+            gap: 0.5rem;
+        }
+
+        @media (min-width: 769px) {
+            .hero {
+                min-height: calc(100vh - 28px);
+                padding: 2rem 4rem;
+                gap: 0.3rem;
+            }
         }
 
         /* Luz principal - superior izquierda */
@@ -296,14 +306,67 @@
         .coin-container {
             position: relative;
             z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .coin-ring {
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            border-radius: 50%;
+            border: 2px solid rgba(32, 127, 126, 0.4);
+            box-shadow: 
+                0 0 30px rgba(32, 127, 126, 0.3),
+                0 0 60px rgba(32, 127, 126, 0.15),
+                inset 0 0 30px rgba(32, 127, 126, 0.1);
+            animation: ringPulse 6s ease-in-out infinite, ringRotate 20s linear infinite;
+            z-index: 1;
+        }
+
+        .coin-ring::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 50%;
+            border: 1px solid rgba(32, 127, 126, 0.2);
+            animation: ringPulse 6s ease-in-out infinite reverse;
+        }
+
+        @keyframes ringPulse {
+            0%, 100% { 
+                opacity: 0.6;
+                transform: scale(1);
+                box-shadow: 
+                    0 0 30px rgba(32, 127, 126, 0.3),
+                    0 0 60px rgba(32, 127, 126, 0.15),
+                    inset 0 0 30px rgba(32, 127, 126, 0.1);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.05);
+                box-shadow: 
+                    0 0 50px rgba(32, 127, 126, 0.4),
+                    0 0 80px rgba(32, 127, 126, 0.2),
+                    inset 0 0 40px rgba(32, 127, 126, 0.15);
+            }
+        }
+
+        @keyframes ringRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .coin-image {
-            width: clamp(200px, 40vw, 350px);
+            width: clamp(180px, 28vw, 280px);
             height: auto;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8))
-                    drop-shadow(0 0 60px rgba(32, 127, 126, 0.12));
+                    drop-shadow(0 0 60px rgba(32, 127, 126, 0.15));
             animation: coinFloat 8s ease-in-out infinite;
             position: relative;
             z-index: 2;
@@ -324,12 +387,19 @@
             font-weight: 700;
             color: var(--gold-light);
             letter-spacing: clamp(0.2rem, 2vw, 0.5rem);
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             text-shadow: 0 0 40px rgba(212, 175, 55, 0.25);
             animation: numberPulse 10s ease-in-out infinite;
             position: relative;
             z-index: 2;
             white-space: nowrap;
+        }
+
+        @media (min-width: 769px) {
+            .ritual-number {
+                font-size: clamp(3rem, 8vw, 6rem);
+                margin-bottom: 0.5rem;
+            }
         }
 
         @keyframes numberPulse {
@@ -356,10 +426,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 1rem;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
             position: relative;
             z-index: 2;
+        }
+
+        @media (min-width: 769px) {
+            .hero-subtitle-container {
+                gap: 0.5rem;
+                margin-bottom: 0.5rem;
+            }
         }
 
         .hero-live-indicator {
@@ -402,9 +479,16 @@
             font-size: clamp(1rem, 2vw, 1.2rem);
             color: var(--text-secondary);
             max-width: 600px;
-            margin-bottom: 3rem;
+            margin-bottom: 1.5rem;
             position: relative;
             z-index: 2;
+        }
+
+        @media (min-width: 769px) {
+            .hero-description {
+                margin-bottom: 1rem;
+                font-size: 1.1rem;
+            }
         }
 
         .cta-button {
@@ -412,15 +496,22 @@
             border: 2px solid var(--gold-primary);
             border-radius: 6px;
             color: var(--gold-primary);
-            padding: 1rem 3rem;
-            font-size: 1.1rem;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
-            margin: 0.5rem;
+            margin: 0.3rem;
             position: relative;
             z-index: 2;
+        }
+
+        @media (min-width: 769px) {
+            .cta-button {
+                padding: 0.7rem 1.8rem;
+                font-size: 0.95rem;
+            }
         }
 
         .cta-button.primary {
@@ -437,7 +528,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 0.8rem;
+            gap: 0.6rem;
             position: relative;
             z-index: 2;
         }
@@ -1046,27 +1137,34 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 1rem;
-            margin-top: 2rem;
-            padding: 1rem;
+            gap: 0.8rem;
+            margin-top: 1rem;
+            padding: 0.5rem;
             flex-wrap: wrap;
             position: relative;
             z-index: 2;
         }
 
+        @media (min-width: 769px) {
+            .lang-switcher {
+                margin-top: 0.8rem;
+                gap: 0.6rem;
+            }
+        }
+
         .lang-switcher span {
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .lang-btn {
             background: transparent;
             border: 1px solid rgba(212, 175, 55, 0.3);
             color: var(--gold-primary);
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
             font-family: 'Courier New', monospace;
         }
@@ -1224,6 +1322,7 @@
     <!-- HERO SECTION -->
     <section class="hero">
         <div class="coin-container">
+            <div class="coin-ring"></div>
             <img src="./assets/images/coin.gif" alt="520 741 8 Token" class="coin-image">
         </div>
         <div class="ritual-number">520 741 8</div>
@@ -1236,7 +1335,7 @@
         </div>
         <p class="hero-description" data-translate="heroDescription">Repeat the sequence. Hold the symbol. Observe what manifests.</p>
         <div class="hero-buttons">
-            <a href="https://join.pump.fun/HSag/vgbuja3n" target="_blank" class="cta-button primary" data-translate="buyButton">Buy 520 741 8</a>
+            <a href="#" target="_blank" class="cta-button primary" data-translate="buyButton">Buy 520 741 8</a>
             <a href="#ritual" class="cta-button" data-translate="ctaButton">Enter the Ritual</a>
             <a href="https://twitter.com/i/communities/2008779038760865953" target="_blank" class="cta-button" data-translate="joinX">Join 𝕏</a>
         </div>
@@ -1305,7 +1404,7 @@
                 <div class="step-title" data-translate="step1Title">Acquire the Symbol</div>
                 <p class="step-description" data-translate="step1Desc">Hold the token. It serves as your key to the collective ritual.</p>
                 <div class="contract-address">
-                    <span class="contract-text">CbQWhrS4pqkkux39Atbda69HuQ5neALeUxjf6vK8pump</span>
+                    <span class="contract-text">PENDING - Token launching today</span>
                     <button class="copy-btn" onclick="copyContract(this)" data-translate="copyBtn">Copy</button>
                 </div>
             </div>
@@ -1366,17 +1465,8 @@
             </div>
         </div>
 
-        <div class="recent-txns">
-            <h3 data-translate="recentTxns">Recent Transactions</h3>
-            <div class="txns-list" id="txnsList">
-                <div class="txn-item loading">
-                    <span class="txn-loading">Loading transactions...</span>
-                </div>
-            </div>
-        </div>
-
         <p style="text-align: center; margin-top: 3rem; color: var(--text-secondary);">
-            <a href="https://dexscreener.com/solana/CbQWhrS4pqkkux39Atbda69HuQ5neALeUxjf6vK8pump" target="_blank" style="color: var(--gold-primary); text-decoration: none; border-bottom: 1px solid var(--gold-primary);" data-translate="liveChartLink">View Live Chart on DexScreener →</a>
+            <a href="#" target="_blank" style="color: var(--gold-primary); text-decoration: none; border-bottom: 1px solid var(--gold-primary);" data-translate="liveChartLink">View Live Chart on DexScreener →</a>
         </p>
     </section>
 
@@ -1404,31 +1494,21 @@
             </div>
             <div class="log-entry completed">
                 <span class="log-status">✓</span>
-                <span class="log-date">[Genesis]</span>
-                <span data-translate="log5">520 741 8 encoded into blockchain</span>
+                <span class="log-date">[Jan 17, 2026]</span>
+                <span data-translate="log5">Genesis — 520 741 8 encoded into blockchain</span>
             </div>
             <div class="log-entry completed">
                 <span class="log-status">✓</span>
-                <span class="log-date">[Jan 09, 2026]</span>
-                <span data-translate="log4">Community channel opened</span>
-            </div>
-            <div class="log-entry completed">
-                <span class="log-status">✓</span>
-                <span class="log-date">[Jan 10, 2026]</span>
-                <span data-translate="log2">Token deployed on Solana</span>
-            </div>
-            <div class="log-entry completed">
-                <span class="log-status">✓</span>
-                <span class="log-date">[Jan 10, 2026]</span>
-                <span data-translate="log3">First 50 holders invited personally</span>
-            </div>
-            <div class="log-entry completed">
-                <span class="log-status">✓</span>
-                <span class="log-date">[Jan 11, 2026]</span>
+                <span class="log-date">[Jan 17, 2026]</span>
                 <span data-translate="log1">Landing deployed</span>
             </div>
             <div class="log-divider">
                 <span data-translate="upcoming">Upcoming</span>
+            </div>
+            <div class="log-entry upcoming">
+                <span class="log-status">◇</span>
+                <span class="log-date">[Jan 17, 2026]</span>
+                <span data-translate="log2">Token launch on Solana</span>
             </div>
             <div class="log-entry upcoming">
                 <span class="log-status">◇</span>
@@ -1472,7 +1552,7 @@
                 <div class="community-link-desc" data-translate="xCommunityDesc">Share observations.<br>Discuss patterns.<br>Stay present.</div>
             </a>
 
-            <a href="https://join.pump.fun/HSag/vgbuja3n" target="_blank" class="community-link">
+            <a href="#" target="_blank" class="community-link">
                 <div class="community-link-title" data-translate="pumpPortal">Pump.fun Portal</div>
                 <div class="community-link-desc" data-translate="pumpPortalDesc">Trade, observe,<br>participate in the<br>economic ritual.</div>
             </a>
@@ -1502,7 +1582,7 @@
         // ==========================================
         // DEXSCREENER API - LIVE DATA
         // ==========================================
-        const TOKEN_ADDRESS = 'CbQWhrS4pqkkux39Atbda69HuQ5neALeUxjf6vK8pump';
+        const TOKEN_ADDRESS = 'PENDING';
         
         function formatPrice(price) {
             if (!price) return '$0.000000';
@@ -1662,32 +1742,14 @@
             }
         }
 
-        // Simular transacciones recientes basado en datos reales del token
-        // (DexScreener API pública no provee txns individuales)
-        function generateRecentActivity() {
-            const txnsList = document.getElementById('txnsList');
-            if (!txnsList) return;
-            
-            // Mostrar mensaje de datos en vivo
-            txnsList.innerHTML = `
-                <div class="txn-item" style="justify-content: center; border-left-color: var(--gold-primary);">
-                    <span style="color: var(--text-secondary);">
-                        📊 Live data available on 
-                        <a href="https://dexscreener.com/solana/${TOKEN_ADDRESS}" target="_blank" style="color: var(--gold-primary);">DexScreener</a>
-                    </span>
-                </div>
-            `;
-        }
-        
         // Fetch inicial y cada 30 segundos
         fetchTokenData();
-        generateRecentActivity();
         setInterval(fetchTokenData, 30000);
 
         // ==========================================
         // GENESIS COUNTER
         // ==========================================
-        const GENESIS_DATE = new Date('2026-01-09T00:00:00Z');
+        const GENESIS_DATE = new Date('2026-01-17T00:00:00Z');
 
         function updateGenesisCounter() {
             const now = new Date();
@@ -2116,7 +2178,7 @@
         }
 
         function copyContract(btn) {
-            const text = 'CbQWhrS4pqkkux39Atbda69HuQ5neALeUxjf6vK8pump';
+            const text = 'PENDING';
             const t = translations[currentLang];
             
             if (navigator.clipboard) {
